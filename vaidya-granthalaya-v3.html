@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>वैद्य ग्रंथालय — Vaidya Granthalaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c9a84c;--gold-b:#f0c060;--gold-d:#7a6030;
+  --orange:#c45e1a;--brown:#1a0e06;--mid:#2e1a0a;
+  --bark:#3d2410;--char:#0d0905;--parch:#f0e0b0;--parch-d:#c0a870;
+  --vata:#78b0f0;--pitta:#e85020;--kapha:#40b464;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'IM Fell English',Georgia,serif;background:var(--char);color:var(--parch);overflow-x:hidden;}
+
+/* ── BG & DUST ── */
+.tbg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(201,168,76,.022) 80px,rgba(201,168,76,.022) 81px),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(201,168,76,.022) 80px,rgba(201,168,76,.022) 81px),
+    radial-gradient(ellipse at 15% 50%,rgba(196,94,26,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 30%,rgba(201,168,76,.05) 0%,transparent 50%),
+    linear-gradient(180deg,#060402 0%,#1a0e06 40%,#120a04 80%,#060402 100%);}
+.tbg::after{content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(172deg,transparent 0px,transparent 3px,rgba(61,36,16,.12) 3px,rgba(61,36,16,.12) 4px,transparent 4px,transparent 14px);opacity:.35;}
+.page-border{position:fixed;inset:10px;z-index:2;border:1px solid rgba(201,168,76,.15);pointer-events:none;}
+.page-border::before{content:'';position:absolute;inset:5px;border:1px solid rgba(201,168,76,.06);}
+#dust{position:fixed;inset:0;z-index:1;pointer-events:none;}
+#rbar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--orange),var(--gold));z-index:300;box-shadow:0 0 8px rgba(201,168,76,.5);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 2.5rem;
+  background:linear-gradient(180deg,rgba(6,4,2,.97),rgba(6,4,2,.8));
+  border-bottom:1px solid rgba(201,168,76,.12);backdrop-filter:blur(10px);}
+.nlogo{font-family:'Cinzel Decorative',serif;font-size:.9rem;color:var(--gold);
+  letter-spacing:.1em;text-shadow:0 0 16px rgba(201,168,76,.35);
+  display:flex;align-items:center;gap:.6rem;cursor:pointer;text-decoration:none;}
+.nlamp{animation:lamp 3s ease-in-out infinite;font-size:1.2rem;}
+@keyframes lamp{0%,100%{opacity:1;filter:drop-shadow(0 0 6px #ff9933) drop-shadow(0 0 16px #ff6600);transform:scale(1);}25%{opacity:.8;filter:drop-shadow(0 0 3px #ff9933);transform:scale(.96);}60%{opacity:1;filter:drop-shadow(0 0 10px #ff9933) drop-shadow(0 0 24px #ff6600);transform:scale(1.03);}}
+.nlinks{display:flex;gap:1.4rem;list-style:none;align-items:center;flex-wrap:wrap;}
+.nlinks a{font-family:'Cinzel',serif;font-size:.6rem;color:var(--parch-d);text-decoration:none;letter-spacing:.16em;text-transform:uppercase;transition:.3s;}
+.nlinks a:hover{color:var(--gold);}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 4rem;position:relative;overflow:hidden;}
+.hmandala{position:absolute;width:680px;height:680px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.055;animation:mspin 130s linear infinite;}
+@keyframes mspin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hcontent{position:relative;z-index:3;max-width:780px;margin:0 auto;}
+.htag{font-family:'Noto Sans Devanagari',sans-serif;font-size:1rem;color:var(--gold-d);letter-spacing:.3em;margin-bottom:1.4rem;animation:gb 4s ease-in-out infinite;}
+@keyframes gb{0%,100%{opacity:.65;}50%{opacity:1;text-shadow:0 0 14px rgba(201,168,76,.4);}}
+.htitle{font-family:'Cinzel Decorative',serif;font-size:clamp(2.2rem,6vw,4.8rem);color:var(--gold);line-height:1.12;letter-spacing:.05em;text-shadow:0 0 50px rgba(201,168,76,.25),0 2px 0 rgba(0,0,0,.9);margin-bottom:.4rem;}
+.hskt{font-family:'Noto Sans Devanagari',sans-serif;font-size:1.6rem;color:rgba(201,168,76,.42);margin-bottom:1.3rem;}
+.hdesc{font-style:italic;font-size:1rem;color:var(--parch-d);line-height:1.9;margin:0 auto 2.5rem;max-width:580px;}
+.om-div{display:flex;align-items:center;gap:1.2rem;justify-content:center;margin:1.8rem 0;color:var(--gold-d);}
+.om-div::before,.om-div::after{content:'';flex:1;max-width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);}
+.om-div span{font-family:'Noto Sans Devanagari',sans-serif;font-size:1.4rem;color:var(--gold);}
+.hstats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.hstat .num{font-family:'Cinzel Decorative',serif;font-size:2rem;color:var(--gold);display:block;}
+.hstat .lbl{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parch-d);}
+.smoke-w{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:420px;height:260px;pointer-events:none;}
+.smoke{position:absolute;bottom:0;border-radius:50%;background:radial-gradient(ellipse,rgba(201,168,76,.09) 0%,transparent 70%);filter:blur(10px);animation:sup 7s ease-in-out infinite;}
+.smoke:nth-child(1){width:75px;height:210px;left:22%;}
+.smoke:nth-child(2){width:95px;height:240px;left:46%;animation-delay:2.4s;}
+.smoke:nth-child(3){width:65px;height:190px;left:68%;animation-delay:4.8s;}
+@keyframes sup{0%{transform:translateY(0) scale(1);opacity:0;}15%{opacity:.65;}100%{transform:translateY(-260px) scale(3) translateX(20px);opacity:0;}}
+
+/* ── SHARED ── */
+.sw{position:relative;z-index:5;max-width:1280px;margin:0 auto;padding:0 1.5rem;}
+section{padding:5rem 0;position:relative;}
+.sh{text-align:center;margin-bottom:3rem;}
+.se{font-family:'Noto Sans Devanagari',sans-serif;font-size:.82rem;color:var(--gold-d);letter-spacing:.28em;display:block;margin-bottom:.6rem;}
+.st{font-family:'Cinzel Decorative',serif;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--gold);}
+.sr{width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:.9rem auto;}
+.sdesc{font-style:italic;color:var(--parch-d);font-size:.9rem;line-height:1.85;max-width:640px;margin:.8rem auto 0;}
+.lamp-div{display:flex;align-items:center;justify-content:center;gap:1.2rem;padding:1.2rem 0;position:relative;z-index:5;}
+.lamp-div::before,.lamp-div::after{content:'';flex:1;max-width:300px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);}
+.lamp-div .li{font-size:1.7rem;animation:lamp 2.5s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(255,153,51,.5));}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.s1{transition-delay:.05s;}.s2{transition-delay:.1s;}.s3{transition-delay:.15s;}
+.s4{transition-delay:.2s;}.s5{transition-delay:.25s;}.s6{transition-delay:.3s;}
+.corner{position:absolute;color:rgba(201,168,76,.28);font-size:.65rem;}
+.corner.tl{top:6px;left:8px;}.corner.tr{top:6px;right:8px;}
+.corner.bl{bottom:6px;left:8px;}.corner.br{bottom:6px;right:8px;}
+
+/* ── DOSHAS ── */
+.dosha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+@media(max-width:900px){.dosha-grid{grid-template-columns:1fr;}}
+.dosha-card{border:1px solid;overflow:hidden;transition:.5s;cursor:pointer;}
+.dosha-card .dc-top{padding:2.2rem 2rem 1.8rem;text-align:center;}
+.dosha-card .dc-body{padding:0 2rem 2rem;display:none;}
+.dosha-card.open .dc-body{display:block;}
+.dosha-card.vata{border-color:rgba(120,176,240,.25);background:linear-gradient(160deg,rgba(120,176,240,.05) 0%,rgba(13,9,5,.95) 100%);}
+.dosha-card.pitta{border-color:rgba(232,80,32,.25);background:linear-gradient(160deg,rgba(232,80,32,.07) 0%,rgba(13,9,5,.95) 100%);}
+.dosha-card.kapha{border-color:rgba(64,180,100,.25);background:linear-gradient(160deg,rgba(64,180,100,.06) 0%,rgba(13,9,5,.95) 100%);}
+.dosha-card:hover{transform:translateY(-5px);}
+.dosha-card.vata:hover{border-color:rgba(120,176,240,.45);}
+.dosha-card.pitta:hover{border-color:rgba(232,80,32,.45);}
+.dosha-card.kapha:hover{border-color:rgba(64,180,100,.45);}
+.dsym{font-size:3.5rem;display:block;margin-bottom:.9rem;animation:dpl 5s ease-in-out infinite;}
+@keyframes dpl{0%,100%{transform:scale(1);filter:drop-shadow(0 0 4px currentColor);}50%{transform:scale(1.08);filter:drop-shadow(0 0 14px currentColor);}}
+.dname{font-family:'Cinzel Decorative',serif;font-size:1.65rem;margin-bottom:.3rem;}
+.dskt{font-family:'Noto Sans Devanagari',sans-serif;font-size:.9rem;color:var(--gold-d);margin-bottom:.4rem;}
+.delem{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1rem;}
+.ddesc{font-style:italic;font-size:.86rem;color:rgba(192,168,112,.75);line-height:1.72;margin-bottom:1rem;}
+.vata .dname{color:var(--vata);}.vata .delem{color:rgba(120,176,240,.7);}
+.pitta .dname{color:var(--pitta);}.pitta .delem{color:rgba(232,80,32,.7);}
+.kapha .dname{color:var(--kapha);}.kapha .delem{color:rgba(64,180,100,.7);}
+.d-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem;justify-content:center;}
+.dtag{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid;padding:.18rem .5rem;}
+.vata .dtag{color:rgba(120,176,240,.8);border-color:rgba(120,176,240,.25);}
+.pitta .dtag{color:rgba(232,80,32,.8);border-color:rgba(232,80,32,.25);}
+.kapha .dtag{color:rgba(64,180,100,.8);border-color:rgba(64,180,100,.25);}
+.dtoggle{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);border:1px solid rgba(201,168,76,.2);padding:.38rem 1rem;background:transparent;cursor:pointer;transition:.3s;}
+.dtoggle:hover{color:var(--gold);border-color:var(--gold);}
+.d-dt{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:.85rem 0 .35rem;border-left:2px solid var(--gold-d);padding-left:.55rem;}
+.d-db{font-style:italic;font-size:.8rem;color:rgba(192,168,112,.72);line-height:1.65;}
+
+/* ── YOGA ── */
+#yoga{background:linear-gradient(180deg,transparent,rgba(46,26,10,.13) 40%,rgba(46,26,10,.13) 60%,transparent);}
+.yoga-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:3.5rem;align-items:start;}
+@media(max-width:900px){.yoga-layout{grid-template-columns:1fr;}}
+.yoga-points{display:flex;flex-direction:column;gap:1.1rem;}
+.yoga-point{display:flex;gap:1rem;align-items:flex-start;background:rgba(46,26,10,.5);border:1px solid rgba(201,168,76,.12);padding:1.1rem;}
+.yp-icon{font-size:1.7rem;flex-shrink:0;animation:dpl 6s ease-in-out infinite;}
+.yp-title{font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+.yp-desc{font-style:italic;font-size:.8rem;color:rgba(192,168,112,.75);line-height:1.68;}
+.yoga-asana-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;margin-top:1.4rem;}
+.asana-card{border:1px solid rgba(201,168,76,.15);padding:1.1rem;background:rgba(26,14,6,.7);text-align:center;transition:.3s;}
+.asana-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px);}
+.asana-icon{font-size:1.9rem;display:block;margin-bottom:.45rem;}
+.asana-name{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;color:var(--gold);}
+.asana-dose{font-size:.7rem;font-style:italic;color:var(--parch-d);margin-top:.25rem;}
+
+/* ── YOGA GENERATOR ── */
+#yoga-gen{background:radial-gradient(ellipse at 50% 50%,rgba(61,36,16,.2) 0%,transparent 65%);}
+.gen-box{background:linear-gradient(160deg,rgba(46,26,10,.98),rgba(13,9,5,.99));border:1px solid rgba(201,168,76,.28);padding:3rem;position:relative;max-width:900px;margin:0 auto;}
+.gen-box::before{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.gen-box::after{content:'';position:absolute;bottom:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);}
+.gen-title{font-family:'Cinzel Decorative',serif;font-size:1.4rem;color:var(--gold);text-align:center;margin-bottom:.35rem;}
+.gen-sub{text-align:center;font-style:italic;color:var(--parch-d);font-size:.85rem;margin-bottom:2.2rem;}
+.gen-form{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:1.8rem;}
+@media(max-width:700px){.gen-form{grid-template-columns:1fr;}}
+.gen-field label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:.45rem;}
+.gen-select{width:100%;padding:.75rem 1rem;background:rgba(13,9,5,.9);border:1px solid rgba(201,168,76,.25);color:var(--parch);font-family:'IM Fell English',serif;font-style:italic;font-size:.88rem;outline:none;cursor:pointer;transition:.3s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.gen-select:focus{border-color:var(--gold);}
+.gen-select option{background:#1a0e06;color:var(--parch);}
+.gen-btn{display:block;width:100%;max-width:300px;margin:0 auto;padding:.95rem 2rem;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;background:rgba(201,168,76,.1);border:1px solid var(--gold-d);color:var(--gold);cursor:pointer;transition:.4s;}
+.gen-btn:hover{background:rgba(201,168,76,.2);border-color:var(--gold);box-shadow:0 0 25px rgba(201,168,76,.12);}
+.gen-output{margin-top:2.2rem;display:none;}
+.gen-output.show{display:block;}
+.go-inner{background:rgba(13,9,5,.7);border:1px solid rgba(201,168,76,.18);padding:1.8rem;position:relative;}
+.go-inner::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);}
+.go-section{margin-bottom:1.4rem;}
+.go-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:.45rem;border-left:2px solid var(--gold-d);padding-left:.55rem;display:block;}
+.go-text{font-style:italic;font-size:.88rem;color:rgba(192,168,112,.85);line-height:1.78;}
+.go-text ul{list-style:none;padding:0;}
+.go-text ul li{padding:.22rem 0 .22rem 1.2rem;position:relative;}
+.go-text ul li::before{content:'✦';position:absolute;left:0;color:var(--gold-d);font-size:.5rem;top:.42rem;}
+.go-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);margin:1rem 0;}
+.go-thought{background:rgba(61,36,16,.4);border-left:2px solid var(--gold-d);padding:1rem 1.2rem;margin-top:1rem;}
+.go-thought p{font-style:italic;font-size:.88rem;color:var(--parch-d);line-height:1.7;}
+.go-badge{display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(201,168,76,.25);padding:.25rem .7rem;color:var(--gold-d);margin-top:.5rem;}
+
+/* ── DINACHARYA ── */
+.dina-tl{display:flex;flex-direction:column;gap:0;position:relative;max-width:800px;margin:0 auto;}
+.dina-tl::before{content:'';position:absolute;left:50px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.3),transparent);}
+.dtime{display:flex;gap:1.4rem;align-items:flex-start;padding:1.3rem 0;}
+.dt-icon-w{width:50px;flex-shrink:0;display:flex;justify-content:center;position:relative;z-index:1;}
+.dt-icon{width:40px;height:40px;border-radius:50%;border:1px solid rgba(201,168,76,.3);background:rgba(26,14,6,.9);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.dt-body{background:rgba(46,26,10,.5);border:1px solid rgba(201,168,76,.12);padding:1rem 1.2rem;flex:1;}
+.dt-time{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.25rem;}
+.dt-title{font-family:'Cinzel',serif;font-size:.85rem;color:var(--parch-d);letter-spacing:.05em;margin-bottom:.35rem;}
+.dt-desc{font-style:italic;font-size:.78rem;color:rgba(192,168,112,.7);line-height:1.62;}
+
+/* ── HERB SECTION ── */
+#herbs-sec{background:linear-gradient(180deg,transparent,rgba(46,26,10,.12) 50%,transparent);}
+.herb-search-wrap{max-width:680px;margin:0 auto 2rem;}
+.herb-input{width:100%;padding:.9rem 1.3rem;background:rgba(26,14,6,.95);border:1px solid rgba(201,168,76,.3);color:var(--parch);font-family:'IM Fell English',serif;font-style:italic;font-size:.95rem;outline:none;transition:.4s;}
+.herb-input::placeholder{color:rgba(192,168,112,.4);}
+.herb-input:focus{border-color:var(--gold);box-shadow:0 0 18px rgba(201,168,76,.1);}
+.herb-tabs{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;margin-bottom:2rem;}
+.herb-tab{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1.4rem;background:transparent;border:1px solid rgba(201,168,76,.2);color:var(--parch-d);cursor:pointer;transition:.3s;}
+.herb-tab:hover,.herb-tab.active{background:rgba(201,168,76,.1);border-color:var(--gold);color:var(--gold);}
+.herb-panel{display:none;}.herb-panel.active{display:block;}
+
+/* Herb Cards */
+.herb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+.herb-card{background:linear-gradient(160deg,rgba(46,26,10,.9),rgba(13,9,5,.97));border:1px solid rgba(201,168,76,.15);padding:1.7rem;position:relative;transition:.4s;overflow:hidden;}
+.herb-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:0;transition:.4s;}
+.herb-card:hover::before{opacity:1;}
+.herb-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.32);}
+.herb-glow{position:absolute;top:-15px;right:-15px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(144,196,90,.12) 0%,transparent 70%);animation:gb 5s ease-in-out infinite;}
+.herb-icon{font-size:2.5rem;display:block;margin-bottom:.85rem;animation:hfl 6s ease-in-out infinite;filter:drop-shadow(0 0 7px rgba(144,196,90,.32));}
+@keyframes hfl{0%,100%{transform:translateY(0) rotate(-1.5deg);}50%{transform:translateY(-6px) rotate(1.5deg);}}
+.herb-name{font-family:'Cinzel',serif;font-size:.98rem;color:var(--gold);letter-spacing:.05em;margin-bottom:.2rem;}
+.herb-skt{font-family:'Noto Sans Devanagari',sans-serif;font-size:.74rem;color:var(--gold-d);margin-bottom:.6rem;}
+.h-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.6rem;}
+.htag{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);border:1px solid rgba(196,94,26,.3);padding:.14rem .45rem;}
+.herb-desc{font-style:italic;font-size:.78rem;color:rgba(192,168,112,.7);line-height:1.62;}
+.herb-no-results{text-align:center;padding:3rem;color:var(--gold-d);font-style:italic;font-size:1rem;}
+
+/* Plants DB */
+.plants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.6rem;}
+.plant-card-db{background:linear-gradient(160deg,rgba(46,26,10,.92),rgba(13,9,5,.97));border:1px solid rgba(201,168,76,.16);overflow:hidden;transition:.4s;cursor:pointer;position:relative;}
+.plant-card-db:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.38);box-shadow:0 16px 45px rgba(0,0,0,.5);}
+.plant-card-db::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:0;transition:.4s;}
+.plant-card-db:hover::before{opacity:1;}
+.p-img-box{width:100%;height:170px;background:linear-gradient(135deg,rgba(61,36,16,.8),rgba(26,14,6,.9));display:flex;align-items:center;justify-content:center;font-size:4rem;border-bottom:1px solid rgba(201,168,76,.1);position:relative;overflow:hidden;}
+.p-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(144,196,90,.07) 0%,transparent 70%);animation:gb 5s ease-in-out infinite;}
+.p-emoji{z-index:1;position:relative;animation:hfl 6s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(144,196,90,.3));}
+.p-body{padding:1.3rem 1.5rem 1.6rem;}
+.p-name{font-family:'Cinzel',serif;font-size:1.08rem;color:var(--gold);letter-spacing:.05em;margin-bottom:.2rem;}
+.p-skt{font-family:'Noto Sans Devanagari',sans-serif;font-size:.75rem;color:var(--gold-d);margin-bottom:.6rem;}
+.p-cat{display:inline-block;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--orange);border:1px solid rgba(196,94,26,.28);padding:.16rem .55rem;margin-bottom:.75rem;}
+.p-excerpt{font-style:italic;font-size:.8rem;color:rgba(192,168,112,.72);line-height:1.62;margin-bottom:.8rem;}
+.p-view{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:.3s;}
+.p-view::after{content:'→';}
+.p-view:hover{color:var(--gold);}
+
+/* Remedies */
+.remedy-search{max-width:600px;margin:0 auto 1.5rem;}
+.disease-btns{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.6rem;background:rgba(26,14,6,.7);border:1px solid rgba(201,168,76,.12);padding:1.3rem;margin-bottom:2rem;}
+.dis-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem;background:transparent;border:1px solid rgba(201,168,76,.16);color:var(--parch-d);cursor:pointer;transition:.3s;}
+.dis-btn:hover{background:rgba(201,168,76,.09);border-color:var(--gold);color:var(--gold);}
+.dis-btn.active{background:rgba(201,168,76,.14);border-color:var(--gold);color:var(--gold);}
+.rem-results{}
+.rem-card{background:linear-gradient(160deg,rgba(46,26,10,.95),rgba(13,9,5,.98));border:1px solid rgba(201,168,76,.18);padding:1.8rem;margin-bottom:1.5rem;position:relative;}
+.rem-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);}
+.rem-heading{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:var(--gold);margin-bottom:1.1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(201,168,76,.13);}
+.rem-row{margin-bottom:.9rem;}
+.rem-plant-name{font-family:'Cinzel',serif;font-size:.83rem;color:var(--orange);margin-bottom:.22rem;}
+.rem-detail{font-style:italic;font-size:.78rem;color:rgba(192,168,112,.7);line-height:1.6;}
+.rem-no{text-align:center;padding:3rem;color:var(--gold-d);font-style:italic;}
+
+/* Cultivation */
+.cult-card{background:linear-gradient(160deg,rgba(46,26,10,.95),rgba(13,9,5,.98));border:1px solid rgba(201,168,76,.16);padding:1.8rem;margin-bottom:1.8rem;position:relative;}
+.cult-card::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);}
+.cult-name{font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold);margin-bottom:1.3rem;padding-bottom:.75rem;border-bottom:1px solid rgba(201,168,76,.14);}
+.cult-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;}
+.cult-item{background:rgba(61,36,16,.4);border:1px solid rgba(201,168,76,.1);padding:.85rem 1rem;border-left:2px solid var(--gold-d);}
+.cult-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.32rem;}
+.cult-val{font-size:.8rem;font-style:italic;color:rgba(192,168,112,.73);line-height:1.5;}
+
+/* Modal */
+.modal-ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(6,4,2,.88);overflow-y:auto;}
+.modal-ov.show{display:block;}
+.modal-box{background:linear-gradient(160deg,rgba(46,26,10,.98),rgba(20,11,4,.99));border:1px solid rgba(201,168,76,.3);margin:3% auto;max-width:720px;padding:2.2rem;position:relative;box-shadow:0 0 80px rgba(0,0,0,.7);}
+.modal-box::before{content:'';position:absolute;top:0;left:5%;right:5%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.modal-box::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);}
+.modal-close{position:absolute;top:.9rem;right:1.2rem;font-size:1.4rem;color:var(--gold-d);cursor:pointer;background:none;border:none;transition:.3s;font-family:'Cinzel',serif;}
+.modal-close:hover{color:var(--gold);transform:rotate(90deg);}
+.modal-title{font-family:'Cinzel Decorative',serif;font-size:1.7rem;color:var(--gold);margin-bottom:.25rem;}
+.modal-skt{font-family:'Noto Sans Devanagari',sans-serif;font-size:.85rem;color:var(--gold-d);margin-bottom:1.3rem;}
+.m-div{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);margin:1.2rem 0;}
+.m-st{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:.45rem;border-left:2px solid var(--gold-d);padding-left:.6rem;}
+.m-sb{font-style:italic;font-size:.88rem;color:rgba(192,168,112,.82);line-height:1.75;margin-bottom:1.2rem;}
+.m-sb strong{font-style:normal;color:var(--parch-d);}
+
+/* Diet */
+#diet{background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.04) 0%,transparent 55%);}
+.diet-tabs{display:flex;justify-content:center;gap:.7rem;margin-bottom:2.2rem;flex-wrap:wrap;}
+.diet-tab{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1.5rem;background:transparent;border:1px solid rgba(201,168,76,.2);color:var(--parch-d);cursor:pointer;transition:.3s;}
+.diet-tab:hover,.diet-tab.active{background:rgba(201,168,76,.1);border-color:var(--gold);color:var(--gold);}
+.diet-panel{display:none;}.diet-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;}
+@media(max-width:700px){.diet-panel.active{grid-template-columns:1fr;}}
+.diet-col{background:rgba(46,26,10,.5);border:1px solid rgba(201,168,76,.12);padding:1.7rem;}
+.diet-col-title{font-family:'Cinzel Decorative',serif;font-size:.98rem;color:var(--gold);margin-bottom:1.1rem;}
+.diet-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.diet-list li{font-style:italic;font-size:.8rem;color:rgba(192,168,112,.73);line-height:1.58;padding-left:1.1rem;position:relative;}
+.diet-list li::before{content:'◈';position:absolute;left:0;color:var(--gold-d);font-size:.52rem;top:.32rem;}
+.diet-col-sub{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:.9rem 0 .45rem;border-left:2px solid var(--gold-d);padding-left:.5rem;}
+
+/* Wisdom scrolls */
+#wisdom{background:linear-gradient(180deg,transparent,rgba(46,26,10,.14) 40%,rgba(46,26,10,.14) 60%,transparent);}
+.wisdom-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem;}
+.scroll-quote{position:relative;}
+.scroll-top-bar,.scroll-bot-bar{height:20px;background:linear-gradient(90deg,var(--bark),#5a3520,var(--bark));border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;}
+.scroll-top-bar{border-bottom:none;border-radius:10px 10px 0 0;}
+.scroll-bot-bar{border-top:none;border-radius:0 0 10px 10px;}
+.scroll-top-bar::after,.scroll-bot-bar::before{content:'─────────────';color:rgba(201,168,76,.25);font-size:.5rem;letter-spacing:.1em;}
+.scroll-inner{border-left:1px solid rgba(201,168,76,.17);border-right:1px solid rgba(201,168,76,.17);padding:1.8rem 1.8rem 1.6rem;background:linear-gradient(180deg,rgba(200,170,100,.04),rgba(200,170,100,.02));position:relative;}
+.scroll-inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent,transparent 27px,rgba(201,168,76,.04) 27px,rgba(201,168,76,.04) 28px);pointer-events:none;}
+.q-skt{font-family:'Noto Sans Devanagari',sans-serif;font-size:1rem;color:var(--gold);line-height:1.72;margin-bottom:.75rem;position:relative;z-index:1;}
+.q-eng{font-style:italic;font-size:.82rem;color:rgba(192,168,112,.73);line-height:1.68;margin-bottom:.85rem;position:relative;z-index:1;}
+.q-src{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);position:relative;z-index:1;}
+
+/* Modern */
+#modern{background:radial-gradient(ellipse at 30% 50%,rgba(196,94,26,.04) 0%,transparent 55%);}
+.modern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.7rem;}
+.modern-card{background:rgba(26,14,6,.7);border:1px solid rgba(201,168,76,.13);padding:1.9rem;transition:.4s;}
+.modern-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-3px);}
+.mc-icon{font-size:1.9rem;display:block;margin-bottom:.85rem;}
+.mc-title{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);letter-spacing:.07em;margin-bottom:.55rem;}
+.mc-desc{font-style:italic;font-size:.8rem;color:rgba(192,168,112,.7);line-height:1.68;}
+
+/* About */
+#about{background:linear-gradient(180deg,transparent,rgba(46,26,10,.13) 30%,rgba(46,26,10,.13) 70%,transparent);}
+.about-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
+@media(max-width:900px){.about-wrap{grid-template-columns:1fr;gap:2.5rem;}}
+.emblem-ring{width:220px;height:220px;border-radius:50%;border:1px solid rgba(201,168,76,.28);margin:0 auto 1.4rem;display:flex;align-items:center;justify-content:center;position:relative;animation:embrot 50s linear infinite;}
+.emblem-ring::before{content:'';position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(201,168,76,.1);animation:embrot 35s linear infinite reverse;}
+@keyframes embrot{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.emblem-center{animation:embrot 50s linear infinite reverse;font-size:4.2rem;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));}
+.ab-name{font-family:'Cinzel Decorative',serif;font-size:.95rem;color:var(--gold);letter-spacing:.1em;text-align:center;margin-top:.5rem;}
+.ab-sub{font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem;color:var(--gold-d);text-align:center;}
+.ab-text{font-style:italic;color:rgba(192,168,112,.8);line-height:1.9;margin-bottom:1.15rem;font-size:.88rem;}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1.7rem;}
+@media(max-width:500px){.team-grid{grid-template-columns:1fr;}}
+.member{background:rgba(46,26,10,.6);border:1px solid rgba(201,168,76,.13);padding:.85rem 1rem;display:flex;gap:.65rem;align-items:center;transition:.3s;}
+.member:hover{border-color:rgba(201,168,76,.3);}
+.mav{width:36px;height:36px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--bark),var(--gold-d));border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;color:var(--gold);}
+.mname{font-family:'Cinzel',serif;font-size:.73rem;color:var(--parch-d);display:block;letter-spacing:.03em;}
+.mrole{font-size:.66rem;font-style:italic;color:var(--orange);}
+.ab-quote{background:rgba(61,36,16,.35);border-left:2px solid var(--gold-d);padding:1.3rem 1.4rem;margin-top:1.7rem;position:relative;}
+.ab-quote::before{content:'"';font-family:'Cinzel Decorative',serif;font-size:3.5rem;color:rgba(201,168,76,.1);position:absolute;top:-.5rem;left:.4rem;line-height:1;}
+.ab-quote p{font-style:italic;color:var(--parch-d);font-size:.85rem;line-height:1.82;position:relative;z-index:1;}
+.ab-quote cite{font-family:'Cinzel',serif;font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);display:block;margin-top:.65rem;}
+.mission-row{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1.4rem;}
+.mi-t{font-family:'Cinzel',serif;font-size:.63rem;color:var(--parch-d);letter-spacing:.07em;border-left:2px solid var(--gold-d);padding-left:.7rem;}
+.mi-d{font-style:italic;font-size:.73rem;color:rgba(192,168,112,.58);margin-top:.18rem;padding-left:.7rem;line-height:1.45;}
+
+/* Footer */
+footer{border-top:1px solid rgba(201,168,76,.1);padding:3rem 0;text-align:center;position:relative;z-index:5;background:rgba(6,4,2,.8);}
+.fom{font-family:'Noto Sans Devanagari',sans-serif;font-size:2rem;color:var(--gold-d);display:block;margin-bottom:1rem;animation:gb 4s ease-in-out infinite;}
+.ftxt{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.24em;color:rgba(122,96,48,.45);text-transform:uppercase;}
+.fblessing{font-style:italic;font-size:.73rem;color:rgba(122,96,48,.28);margin-top:.9rem;}
+@media(max-width:768px){nav{padding:.7rem 1.1rem;}.nlinks{gap:.7rem;}.nlinks a{font-size:.54rem;}.gen-box{padding:1.6rem;}}
+
+/* ── IMAGE UPLOAD ZONE ── */
+.img-zone{
+  border:1px dashed rgba(201,168,76,.32);
+  background:rgba(13,9,5,.6);
+  padding:1.4rem;margin-bottom:1.6rem;position:relative;
+}
+.img-zone-title{
+  font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;
+}
+.img-zone-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.25),transparent);}
+.img-preview{
+  width:100%;height:240px;
+  background:linear-gradient(135deg,rgba(61,36,16,.75),rgba(13,9,5,.85));
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;overflow:hidden;position:relative;
+  border:1px solid rgba(201,168,76,.1);
+}
+.img-preview img{width:100%;height:100%;object-fit:cover;}
+.img-preview .img-placeholder{
+  text-align:center;pointer-events:none;
+}
+.img-placeholder .ph-emoji{font-size:3.5rem;display:block;margin-bottom:.5rem;opacity:.6;}
+.img-placeholder .ph-text{font-style:italic;font-size:.78rem;color:rgba(192,168,112,.4);}
+.img-btn-row{display:flex;gap:.7rem;flex-wrap:wrap;}
+.btn-img-upload,.btn-img-remove,.btn-img-save{
+  flex:1;min-width:100px;
+  padding:.7rem .8rem;
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;border:1px solid;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+}
+.btn-img-upload{background:rgba(201,168,76,.1);border-color:var(--gold-d);color:var(--gold);}
+.btn-img-upload:hover{background:rgba(201,168,76,.22);border-color:var(--gold);}
+.btn-img-remove{background:rgba(196,94,26,.1);border-color:rgba(196,94,26,.35);color:var(--orange);}
+.btn-img-remove:hover{background:rgba(196,94,26,.22);}
+.btn-img-save{background:rgba(64,180,100,.1);border-color:rgba(64,180,100,.35);color:#40b464;}
+.btn-img-save:hover{background:rgba(64,180,100,.2);}
+.img-storage-bar{margin-top:.9rem;}
+.img-storage-label{
+  font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-d);display:flex;justify-content:space-between;margin-bottom:.35rem;
+}
+.img-storage-track{
+  height:4px;background:rgba(61,36,16,.8);border:1px solid rgba(201,168,76,.12);
+  border-radius:2px;overflow:hidden;
+}
+.img-storage-fill{
+  height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold));
+  border-radius:2px;transition:width .5s ease;min-width:2px;
+}
+.img-toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:600;
+  background:rgba(26,14,6,.96);border:1px solid rgba(201,168,76,.4);
+  padding:.7rem 1.8rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;
+  color:var(--gold);opacity:0;transition:opacity .35s;pointer-events:none;
+  white-space:nowrap;box-shadow:0 0 30px rgba(201,168,76,.12);
+}
+.img-toast.show{opacity:1;}
+/* Herb card image display */
+.herb-card .hc-img{
+  width:100%;height:140px;object-fit:cover;display:block;
+  border-bottom:1px solid rgba(201,168,76,.1);margin-bottom:.75rem;
+}
+.herb-card .hc-img-wrap{
+  width:100%;height:140px;overflow:hidden;margin-bottom:.75rem;
+  border-bottom:1px solid rgba(201,168,76,.1);display:none;
+}
+.herb-card.has-img .hc-img-wrap{display:block;}
+/* Plant card image */
+.p-img-box img{width:100%;height:100%;object-fit:cover;}
+</style>
+</head>
+<body>
+<div id="rbar"></div>
+<div class="tbg"></div>
+<canvas id="dust"></canvas>
+<div class="page-border"></div>
+<div class="img-toast" id="imgToast"></div>
+<input type="file" id="globalImgInput" accept="image/*" style="display:none">
+
+<!-- NAV -->
+<nav>
+  <a class="nlogo" href="#hero"><span class="nlamp">🪔</span>Vaidya Granthalaya</a>
+  <ul class="nlinks">
+    <li><a href="#doshas">Doshas</a></li>
+    <li><a href="#yoga">Yoga</a></li>
+    <li><a href="#yoga-gen">Routine</a></li>
+    <li><a href="#dina">Dinacharya</a></li>
+    <li><a href="#herbs-sec">Herbs</a></li>
+    <li><a href="#diet">Diet</a></li>
+    <li><a href="#wisdom">Wisdom</a></li>
+    <li><a href="#about">Our Circle</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="hmandala" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(200,200)">
+      <circle r="188" fill="none" stroke="#c9a84c" stroke-width=".5"/>
+      <circle r="158" fill="none" stroke="#c9a84c" stroke-width=".3"/>
+      <circle r="100" fill="none" stroke="#c9a84c" stroke-width=".3"/>
+      <circle r="78" fill="none" stroke="#c9a84c" stroke-width=".5"/>
+      <circle r="38" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+      <circle r="10" fill="#c9a84c"/>
+      <g><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(45)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(90)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(135)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(180)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(225)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(270)"/><ellipse cx="0" cy="-118" rx="11" ry="38" fill="#c9a84c" transform="rotate(315)"/></g>
+      <g opacity=".45"><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(0)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(22.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(45)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(67.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(90)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(112.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(135)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(157.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(180)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(202.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(225)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(247.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(270)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(292.5)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(315)"/><ellipse cx="0" cy="-168" rx="5" ry="16" fill="#c9a84c" transform="rotate(337.5)"/></g>
+      <line x1="-188" y1="0" x2="188" y2="0" stroke="#c9a84c" stroke-width=".3"/>
+      <line x1="0" y1="-188" x2="0" y2="188" stroke="#c9a84c" stroke-width=".3"/>
+      <line x1="-133" y1="-133" x2="133" y2="133" stroke="#c9a84c" stroke-width=".2"/>
+      <line x1="133" y1="-133" x2="-133" y2="133" stroke="#c9a84c" stroke-width=".2"/>
+    </g>
+  </svg>
+  <div class="hcontent">
+    <p class="htag">॥ आयुर्वेद ज्ञान भण्डार ॥</p>
+    <h1 class="htitle">Vaidya<br>Granthalaya</h1>
+    <p class="hskt">वैद्य ग्रंथालय</p>
+    <p class="hdesc">Enter the sacred archive of ancient healing wisdom — where Vedic physicians preserved the secrets of cosmic balance, medicinal herbs, and the eternal science of life across five thousand years.</p>
+    <div class="om-div"><span>ॐ</span></div>
+    <div class="hstats">
+      <div class="hstat"><span class="num">5000+</span><span class="lbl">Years of Wisdom</span></div>
+      <div class="hstat"><span class="num">3</span><span class="lbl">Cosmic Doshas</span></div>
+      <div class="hstat"><span class="num">50</span><span class="lbl">Sacred Plants</span></div>
+      <div class="hstat"><span class="num">∞</span><span class="lbl">Balance Restored</span></div>
+    </div>
+  </div>
+  <div class="smoke-w"><div class="smoke"></div><div class="smoke"></div><div class="smoke"></div></div>
+</section>
+
+<!-- DOSHAS -->
+<section id="doshas" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">त्रिदोष विस्तार</span><h2 class="st">The Three Cosmic Forces</h2><div class="sr"></div><p class="sdesc">Every living being is a unique confluence of three biological energies. Click a dosha card to reveal its deep secrets.</p></div>
+    <div class="dosha-grid">
+      <div class="dosha-card vata reveal s1">
+        <span class="corner tl">✦</span><span class="corner tr">✦</span>
+        <div class="dc-top">
+          <span class="dsym" style="color:var(--vata);">💨</span>
+          <h3 class="dname">Vata</h3><p class="dskt">वात</p><p class="delem">Air · Ether · Space · Movement</p>
+          <p class="ddesc">The energy of movement, breath, and communication. Quick, creative, and ever-changing like the wind across open sky.</p>
+          <div class="d-tags"><span class="dtag">Dry</span><span class="dtag">Light</span><span class="dtag">Cold</span><span class="dtag">Subtle</span><span class="dtag">Mobile</span></div>
+          <button class="dtoggle" onclick="toggleDosha(this)">Explore Vata ↓</button>
+        </div>
+        <div class="dc-body">
+          <p class="d-dt">Imbalance Symptoms</p><p class="d-db">Anxiety, restlessness, dry skin, constipation, insomnia, fear, tremors, scattered thinking, forgetfulness.</p>
+          <p class="d-dt">Balancing Foods</p><p class="d-db">Warm, oily, heavy foods. Ghee, sesame oil, sweet potatoes, rice, wheat, dairy, nuts, cooked vegetables, warm soups.</p>
+          <p class="d-dt">Daily Routine</p><p class="d-db">Regular meal times, warm oil massage (Abhyanga), gentle yoga, early sleep by 10 PM, minimal screen time, grounding practices.</p>
+          <p class="d-dt">Yoga for Vata</p><p class="d-db">Slow, grounding poses — Tadasana, Balasana, Shavasana. Avoid fast-paced sequences. Focus on stillness and breath retention.</p>
+          <p class="d-dt">Sacred Herbs</p><p class="d-db">Ashwagandha, Shatavari, Bala, Vidari Kanda, warm sesame oil, Triphala at night, ginger tea each morning.</p>
+        </div>
+      </div>
+      <div class="dosha-card pitta reveal s2">
+        <span class="corner tl">✦</span><span class="corner tr">✦</span>
+        <div class="dc-top">
+          <span class="dsym" style="color:var(--pitta);">🔥</span>
+          <h3 class="dname">Pitta</h3><p class="dskt">पित्त</p><p class="delem">Fire · Water · Transformation</p>
+          <p class="ddesc">The energy of transformation, metabolism, and intelligence. Sharp, penetrating, and purposeful like the sacred temple flame.</p>
+          <div class="d-tags"><span class="dtag">Hot</span><span class="dtag">Sharp</span><span class="dtag">Oily</span><span class="dtag">Intense</span><span class="dtag">Fluid</span></div>
+          <button class="dtoggle" onclick="toggleDosha(this)">Explore Pitta ↓</button>
+        </div>
+        <div class="dc-body">
+          <p class="d-dt">Imbalance Symptoms</p><p class="d-db">Anger, irritability, inflammation, heartburn, acidity, skin rashes, excessive heat, perfectionism, jealousy.</p>
+          <p class="d-dt">Balancing Foods</p><p class="d-db">Cooling, sweet, bitter foods. Coconut milk, cucumber, leafy greens, sweet fruits, ghee, coriander, fennel, mint.</p>
+          <p class="d-dt">Daily Routine</p><p class="d-db">Avoid midday sun, eat lunch as largest meal, practice compassion, take cool walks near water, protect from overwork.</p>
+          <p class="d-dt">Yoga for Pitta</p><p class="d-db">Cooling, relaxing poses — Chandra Namaskar, Bhujangasana, Supta Baddha Konasana. Sheetali pranayama always.</p>
+          <p class="d-dt">Sacred Herbs</p><p class="d-db">Amalaki, Brahmi, Shatavari, Manjistha, rose water, aloe vera gel, coriander tea, neem leaf, guduchi.</p>
+        </div>
+      </div>
+      <div class="dosha-card kapha reveal s3">
+        <span class="corner tl">✦</span><span class="corner tr">✦</span>
+        <div class="dc-top">
+          <span class="dsym" style="color:var(--kapha);">🌊</span>
+          <h3 class="dname">Kapha</h3><p class="dskt">कफ</p><p class="delem">Earth · Water · Structure · Form</p>
+          <p class="ddesc">The energy of structure, cohesion, and nurturing. Steady, enduring, and fertile like the sacred earth from which all life emerges.</p>
+          <div class="d-tags"><span class="dtag">Heavy</span><span class="dtag">Slow</span><span class="dtag">Cool</span><span class="dtag">Soft</span><span class="dtag">Dense</span></div>
+          <button class="dtoggle" onclick="toggleDosha(this)">Explore Kapha ↓</button>
+        </div>
+        <div class="dc-body">
+          <p class="d-dt">Imbalance Symptoms</p><p class="d-db">Lethargy, weight gain, congestion, attachment, depression, sluggish digestion, excessive sleep, possessiveness.</p>
+          <p class="d-dt">Balancing Foods</p><p class="d-db">Light, dry, warm foods. Barley, millet, bitter greens, pungent spices, honey, legumes, ginger, black pepper.</p>
+          <p class="d-dt">Daily Routine</p><p class="d-db">Rise before sunrise, vigorous daily exercise, avoid daytime napping, seek new experiences, reduce heavy foods.</p>
+          <p class="d-dt">Yoga for Kapha</p><p class="d-db">Energizing, active flows — Surya Namaskar, Virabhadrasana, Ustrasana. Bhastrika pranayama vigorously.</p>
+          <p class="d-dt">Sacred Herbs</p><p class="d-db">Trikatu, Guggul, Punarnava, Chitrak, Triphala, ginger, black pepper, dry ginger tea, kutki, shilajit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- YOGA -->
+<section id="yoga" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">योग और आयुर्वेद</span><h2 class="st">The Sacred Science of Yoga</h2><div class="sr"></div><p class="sdesc">Yoga is the living companion of Ayurveda — the path that brings the body's energies into divine harmony with the cosmos.</p></div>
+    <div class="yoga-layout">
+      <div class="yoga-points">
+        <div class="yoga-point reveal s1"><span class="yp-icon">🧘</span><div><p class="yp-title">Dosha Balance Through Asana</p><p class="yp-desc">Each posture activates specific pranas. Grounding poses pacify Vata, cooling postures soothe Pitta, invigorating sequences awaken Kapha — restoring sacred equilibrium.</p></div></div>
+        <div class="yoga-point reveal s2"><span class="yp-icon">🌬️</span><div><p class="yp-title">Pranayama — Control of Life Force</p><p class="yp-desc">The science of breath regulation purifies 72,000 nadis, awakening dormant prana, calming the nervous system, and igniting the sacred digestive fire (Agni).</p></div></div>
+        <div class="yoga-point reveal s3"><span class="yp-icon">🧠</span><div><p class="yp-title">Stress Reduction & Mental Clarity</p><p class="yp-desc">Consistent yoga practice reduces cortisol, calms the amygdala, and cultivates the sattvic quality of mind essential for all healing and spiritual growth.</p></div></div>
+        <div class="yoga-point reveal s4"><span class="yp-icon">🔥</span><div><p class="yp-title">Igniting Digestive Fire (Agni)</p><p class="yp-desc">Twisting postures and specific pranayamas massage abdominal organs, stoking the sacred digestive fire that Ayurveda places at the center of all health.</p></div></div>
+        <div class="yoga-point reveal s5"><span class="yp-icon">🌸</span><div><p class="yp-title">Inner Peace & Spiritual Connection</p><p class="yp-desc">Meditation awakens the witness consciousness described in Vedic texts as the source of all health, clarity, and liberation from suffering.</p></div></div>
+      </div>
+      <div>
+        <div style="margin-bottom:1.3rem;"><span class="se" style="text-align:left;display:block;">Key Asanas by Dosha</span></div>
+        <div class="yoga-asana-grid">
+          <div class="asana-card reveal s1"><span class="asana-icon">🧘‍♂️</span><p class="asana-name">Balasana</p><p class="asana-dose">Child's Pose · Vata · 2 min</p></div>
+          <div class="asana-card reveal s2"><span class="asana-icon">🌙</span><p class="asana-name">Chandra Namaskar</p><p class="asana-dose">Moon Salutation · Pitta · 10 rounds</p></div>
+          <div class="asana-card reveal s3"><span class="asana-icon">☀️</span><p class="asana-name">Surya Namaskar</p><p class="asana-dose">Sun Salutation · Kapha · 12 rounds</p></div>
+          <div class="asana-card reveal s4"><span class="asana-icon">🦁</span><p class="asana-name">Virabhadrasana</p><p class="asana-dose">Warrior Pose · All · 5 breaths</p></div>
+          <div class="asana-card reveal s5"><span class="asana-icon">🌊</span><p class="asana-name">Setu Bandhasana</p><p class="asana-dose">Bridge Pose · Vata/Pitta · 1 min</p></div>
+          <div class="asana-card reveal s6"><span class="asana-icon">🌺</span><p class="asana-name">Padmasana</p><p class="asana-dose">Lotus Pose · All · Meditation</p></div>
+        </div>
+        <div style="margin-top:1.6rem;background:rgba(46,26,10,.5);border:1px solid rgba(201,168,76,.13);padding:1.4rem;">
+          <p style="font-family:'Cinzel',serif;font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem;">The Eight Limbs — Ashtanga Yoga</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem;">
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">1. Yama — Ethics</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">2. Niyama — Discipline</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">3. Asana — Postures</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">4. Pranayama — Breath</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">5. Pratyahara — Withdrawal</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">6. Dharana — Concentration</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">7. Dhyana — Meditation</p>
+            <p style="font-style:italic;font-size:.76rem;color:rgba(192,168,112,.7);">8. Samadhi — Union</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- YOGA GENERATOR (LOCAL — NO API) -->
+<section id="yoga-gen" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">योग साधना — Personalized Practice</span><h2 class="st">Sacred Yoga Routine Generator</h2><div class="sr"></div><p class="sdesc">Select your dominant dosha, available time, and healing goal. Ancient Ayurvedic wisdom will craft your sacred practice instantly.</p></div>
+    <div class="gen-box reveal">
+      <p class="gen-title">🌿 Sacred Routine Generator</p>
+      <p class="gen-sub">Your personalized Ayurvedic yoga practice, created in the tradition of the Gurukul</p>
+      <div class="gen-form">
+        <div class="gen-field"><label>Your Dosha (प्रकृति)</label>
+          <select id="sel-dosha" class="gen-select">
+            <option value="Vata">Vata — Air & Ether</option>
+            <option value="Pitta">Pitta — Fire & Water</option>
+            <option value="Kapha">Kapha — Earth & Water</option>
+          </select></div>
+        <div class="gen-field"><label>Time Available (समय)</label>
+          <select id="sel-time" class="gen-select">
+            <option value="5">5 Minutes</option>
+            <option value="10" selected>10 Minutes</option>
+            <option value="15">15 Minutes</option>
+          </select></div>
+        <div class="gen-field"><label>Healing Goal (लक्ष्य)</label>
+          <select id="sel-goal" class="gen-select">
+            <option value="stress">Stress Relief</option>
+            <option value="energy">Energy Boost</option>
+            <option value="digestion">Better Digestion</option>
+            <option value="focus">Focus & Clarity</option>
+            <option value="sleep">Sleep Improvement</option>
+          </select></div>
+      </div>
+      <button class="gen-btn" onclick="generateRoutine()">✦ Generate My Sacred Routine ✦</button>
+      <div class="gen-output" id="gen-output"><div class="go-inner" id="gen-result"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- DINACHARYA -->
+<section id="dina" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">दिनचर्या — Daily Sacred Rhythm</span><h2 class="st">The Ayurvedic Day</h2><div class="sr"></div><p class="sdesc">Alignment with nature's rhythms is the foundation of health. The Dinacharya keeps all three doshas in sacred balance throughout each day.</p></div>
+    <div class="dina-tl">
+      <div class="dtime reveal s1"><div class="dt-icon-w"><div class="dt-icon">🌄</div></div><div class="dt-body"><p class="dt-time">4:00 – 6:00 AM · Brahma Muhurta</p><p class="dt-title">Rise Before the Sun</p><p class="dt-desc">Wake during the hour of Brahma — when cosmic energy is most sattvic. Sit quietly, offer gratitude, observe the sacred silence before the world awakens.</p></div></div>
+      <div class="dtime reveal s2"><div class="dt-icon-w"><div class="dt-icon">🦷</div></div><div class="dt-body"><p class="dt-time">6:00 – 7:00 AM · Cleansing Rituals</p><p class="dt-title">Oral & Body Purification</p><p class="dt-desc">Oil pull with sesame oil (15 min). Scrape the tongue. Wash face with cold water. Drink warm water with lemon. Nasya (nasal oil). Neem twig for teeth.</p></div></div>
+      <div class="dtime reveal s3"><div class="dt-icon-w"><div class="dt-icon">🧘</div></div><div class="dt-body"><p class="dt-time">7:00 – 8:00 AM · Sacred Movement</p><p class="dt-title">Yoga & Meditation</p><p class="dt-desc">Begin with dosha-appropriate yoga. Follow with pranayama (Nadi Shodhana for Vata, Sheetali for Pitta, Kapalabhati for Kapha). Close with 15–20 min meditation.</p></div></div>
+      <div class="dtime reveal s4"><div class="dt-icon-w"><div class="dt-icon">🍵</div></div><div class="dt-body"><p class="dt-time">8:00 – 9:00 AM · Morning Nourishment</p><p class="dt-title">The Sacred First Meal</p><p class="dt-desc">Light, warm, easily digestible. Herbal tea suited to your dosha. Warm porridge or soaked fruits. Never eat while distracted. Sit facing east. Offer a prayer.</p></div></div>
+      <div class="dtime reveal s5"><div class="dt-icon-w"><div class="dt-icon">☀️</div></div><div class="dt-body"><p class="dt-time">12:00 – 1:00 PM · Midday Meal</p><p class="dt-title">The Largest Sacred Meal</p><p class="dt-desc">Pitta peaks at noon — digestive fire is strongest. Eat the main meal of the day in calm surroundings. Chew thoroughly. Rest 5–10 minutes after eating.</p></div></div>
+      <div class="dtime reveal s6"><div class="dt-icon-w"><div class="dt-icon">🌿</div></div><div class="dt-body"><p class="dt-time">3:00 – 5:00 PM · Vata Peak</p><p class="dt-title">Afternoon Restoration</p><p class="dt-desc">Vata increases in late afternoon. Sip warm herbal tea. Avoid stimulants. Take a short walk in nature. Ideal for creative work, journaling, or light reading.</p></div></div>
+      <div class="dtime reveal s1"><div class="dt-icon-w"><div class="dt-icon">🌙</div></div><div class="dt-body"><p class="dt-time">6:00 – 7:00 PM · Evening Meal</p><p class="dt-title">Sunset Nourishment</p><p class="dt-desc">The lightest meal of the day. Warm soups, kitchari, or cooked vegetables. Avoid heavy proteins at night. Digestive fire diminishes after sunset — honor this truth.</p></div></div>
+      <div class="dtime reveal s2"><div class="dt-icon-w"><div class="dt-icon">🕯️</div></div><div class="dt-body"><p class="dt-time">9:00 – 10:00 PM · Sacred Sleep</p><p class="dt-title">The Path to Sacred Sleep</p><p class="dt-desc">Oil the feet and scalp with warm sesame oil. Read sacred texts or practice gratitude. Dim all lights. Avoid screens. Warm milk with ashwagandha. Sleep by 10 PM.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- ════ HERBS / PLANTS / CULTIVATION / REMEDIES ════ -->
+<section id="herbs-sec" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">औषधि ज्ञान — Sacred Plant Knowledge</span><h2 class="st">The Herbal Archive</h2><div class="sr"></div></div>
+
+    <!-- Search Box -->
+    <div class="herb-search-wrap reveal">
+      <input type="text" id="herbSearchBox" class="herb-input" placeholder="🔍  Search plants, Sanskrit names, medicinal uses, diseases..." oninput="onHerbSearch(this.value)">
+    </div>
+
+    <!-- Sub Tabs -->
+    <div class="herb-tabs">
+      <button class="herb-tab active" onclick="switchHerbTab('herb-overview',this)">🌿 Sacred Herbs</button>
+      <button class="herb-tab" onclick="switchHerbTab('herb-plants',this)">📜 Plants Database (50)</button>
+      <button class="herb-tab" onclick="switchHerbTab('herb-remedies',this)">💊 Remedies</button>
+      <button class="herb-tab" onclick="switchHerbTab('herb-cultivation',this)">🌾 Cultivation</button>
+    </div>
+
+    <!-- TAB: HERB OVERVIEW CARDS -->
+    <div id="herb-overview" class="herb-panel active">
+      <div class="herb-grid" id="herbOverviewGrid">
+        <div class="herb-card"><div class="herb-glow"></div><span class="herb-icon">🌿</span><h3 class="herb-name">Ashwagandha</h3><p class="herb-skt">अश्वगंधा · Withania somnifera</p><div class="h-tags"><span class="htag">Adaptogen</span><span class="htag">Rasayana</span><span class="htag">Nervine</span></div><p class="herb-desc">The supreme adaptogen — builds resilience against all stress. Taken with warm milk at night it restores vital energy, supports deep sleep, and rebuilds depleted tissues.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(255,200,50,.13) 0%,transparent 70%);"></div><span class="herb-icon">🟡</span><h3 class="herb-name">Turmeric (Haridra)</h3><p class="herb-skt">हरिद्रा · Curcuma longa</p><div class="h-tags"><span class="htag">Anti-inflammatory</span><span class="htag">Detox</span><span class="htag">Tridoshic</span></div><p class="herb-desc">The golden healer of every temple kitchen. Purifies blood, dissolves Ama (toxins), protects the liver. Golden milk is Ayurveda's greatest daily tonic.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(100,200,150,.13) 0%,transparent 70%);"></div><span class="herb-icon">🍃</span><h3 class="herb-name">Tulsi (Holy Basil)</h3><p class="herb-skt">तुलसी · Ocimum sanctum</p><div class="h-tags"><span class="htag">Sattvic</span><span class="htag">Immune</span><span class="htag">Sacred</span></div><p class="herb-desc">The most revered of all Ayurvedic herbs. Bridges mortal and divine. Purifies air, strengthens immunity, and protects against all pathogens.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(60,150,200,.12) 0%,transparent 70%);"></div><span class="herb-icon">🧠</span><h3 class="herb-name">Brahmi</h3><p class="herb-skt">ब्राह्मी · Bacopa monnieri</p><div class="h-tags"><span class="htag">Brain Tonic</span><span class="htag">Medhya</span><span class="htag">Nervine</span></div><p class="herb-desc">Named for Brahma. This sacred herb awakens the intellect, calms the restless mind, and unlocks deeper layers of consciousness and memory beyond ordinary reach.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(200,120,60,.13) 0%,transparent 70%);"></div><span class="herb-icon">🌸</span><h3 class="herb-name">Shatavari</h3><p class="herb-skt">शतावरी · Asparagus racemosus</p><div class="h-tags"><span class="htag">Female Tonic</span><span class="htag">Cooling</span><span class="htag">Pitta</span></div><p class="herb-desc">She who has a hundred husbands. The supreme feminine Rasayana — nourishes all seven dhatus, supports hormonal balance and compassion through every life stage.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(180,100,200,.11) 0%,transparent 70%);"></div><span class="herb-icon">⛰️</span><h3 class="herb-name">Shilajit</h3><p class="herb-skt">शिलाजीत · Asphaltum punjabianum</p><div class="h-tags"><span class="htag">Mineral Resin</span><span class="htag">Anabolic</span><span class="htag">Rejuvenator</span></div><p class="herb-desc">Conqueror of mountains — exuded from Himalayan rocks under summer sun. Contains 84 minerals in ionic form. Carries millions of years of Earth's healing memory.</p></div>
+        <div class="herb-card"><div class="herb-glow"></div><span class="herb-icon">🍊</span><h3 class="herb-name">Amalaki (Amla)</h3><p class="herb-skt">आमलकी · Phyllanthus emblica</p><div class="h-tags"><span class="htag">Tridoshic</span><span class="htag">Anti-aging</span><span class="htag">Vitamin C</span></div><p class="herb-desc">The mother of all Rasayanas. Sacred Indian Gooseberry with 20x the Vitamin C of oranges. Rejuvenates all seven body tissues and restores youthful vitality at any age.</p></div>
+        <div class="herb-card"><div class="herb-glow" style="background:radial-gradient(circle,rgba(64,180,100,.13) 0%,transparent 70%);"></div><span class="herb-icon">🔰</span><h3 class="herb-name">Guduchi (Giloy)</h3><p class="herb-skt">गुडूची · Tinospora cordifolia</p><div class="h-tags"><span class="htag">Immune Boost</span><span class="htag">Detox</span><span class="htag">Amrita</span></div><p class="herb-desc">Called Amrita — the nectar of immortality. Ayurveda's greatest immuno-modulator, protecting against fevers, infections, liver disorders, and autoimmune conditions.</p></div>
+      </div>
+    </div>
+
+    <!-- TAB: PLANTS DATABASE -->
+    <div id="herb-plants" class="herb-panel">
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem;justify-content:center;" id="plantFilterRow">
+        <button class="herb-tab active" style="padding:.45rem 1.1rem;" onclick="filterPlants('all',this)">All 50</button>
+        <button class="herb-tab" style="padding:.45rem 1.1rem;" onclick="filterPlants('rasayana',this)">✨ Rasayanas</button>
+        <button class="herb-tab" style="padding:.45rem 1.1rem;" onclick="filterPlants('spice',this)">🟡 Spices</button>
+        <button class="herb-tab" style="padding:.45rem 1.1rem;" onclick="filterPlants('tree',this)">🌳 Trees</button>
+        <button class="herb-tab" style="padding:.45rem 1.1rem;" onclick="filterPlants('flower',this)">🌺 Flowers</button>
+        <button class="herb-tab" style="padding:.45rem 1.1rem;" onclick="filterPlants('medicinal',this)">🌿 Herbs</button>
+      </div>
+      <div class="plants-grid" id="plantsGrid"></div>
+    </div>
+
+    <!-- TAB: REMEDIES -->
+    <div id="herb-remedies" class="herb-panel">
+      <div class="remedy-search"><input type="text" class="herb-input" placeholder="🔍  Search by condition — fever, digestion, stress, skin..." oninput="onDiseaseSearch(this.value)"></div>
+      <div class="disease-btns" id="diseaseBtns"></div>
+      <div id="remedyResults"><p class="rem-no">✦ Select a condition above or search by name ✦</p></div>
+    </div>
+
+    <!-- TAB: CULTIVATION -->
+    <div id="herb-cultivation" class="herb-panel">
+      <div id="cultivationContainer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Plant Modal -->
+<div id="plantModal" class="modal-ov">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('plantModal').classList.remove('show')">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- DIET -->
+<section id="diet" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">आहार विज्ञान — Sacred Food Science</span><h2 class="st">Ayurvedic Diet Wisdom</h2><div class="sr"></div><p class="sdesc">Food is the first medicine. Every morsel carries a quality (guna) and a taste (rasa) that affects consciousness, energy, and dosha balance.</p></div>
+    <div class="diet-tabs">
+      <button class="diet-tab active" onclick="switchDiet('sattvic',this)">✨ Sattvic</button>
+      <button class="diet-tab" onclick="switchDiet('rajasic',this)">🔥 Rajasic</button>
+      <button class="diet-tab" onclick="switchDiet('tamasic',this)">🌑 Tamasic</button>
+      <button class="diet-tab" onclick="switchDiet('ritucharya',this)">🍂 Seasonal</button>
+    </div>
+    <div id="diet-sattvic" class="diet-panel active">
+      <div class="diet-col"><p class="diet-col-title">Sattvic Foods (सात्विक)</p><p style="font-style:italic;font-size:.8rem;color:rgba(192,168,112,.7);margin-bottom:.9rem;line-height:1.58;">Pure, light, life-giving — the food of sages. Promotes clarity, compassion, and spiritual awakening.</p><p class="diet-col-sub">Grains & Legumes</p><ul class="diet-list"><li>White rice, barley, oats, mung dal</li><li>Fresh whole wheat, amaranth, quinoa</li><li>Freshly cooked lentils and chickpeas</li></ul><p class="diet-col-sub">Fruits & Vegetables</p><ul class="diet-list"><li>Sweet fresh fruits — mangoes, figs, dates</li><li>Root vegetables, leafy greens, cucumber</li><li>Fresh coconut and coconut milk</li></ul></div>
+      <div class="diet-col"><p class="diet-col-title">Benefits & Sacred Practices</p><ul class="diet-list"><li>Promotes lightness, mental clarity, and joy</li><li>Supports meditation and spiritual practice</li><li>Naturally balances all three doshas</li><li>Eaten with awareness and gratitude</li><li>Always fresh — never leftover or processed</li></ul><p class="diet-col-sub">Sattvic Spices</p><ul class="diet-list"><li>Turmeric, cumin, coriander, fennel</li><li>Cardamom, saffron, fresh ginger</li><li>Fresh herbs — tulsi, mint, cilantro</li></ul></div>
+    </div>
+    <div id="diet-rajasic" class="diet-panel">
+      <div class="diet-col"><p class="diet-col-title">Rajasic Foods (राजसिक)</p><p style="font-style:italic;font-size:.8rem;color:rgba(192,168,112,.7);margin-bottom:.9rem;line-height:1.58;">Stimulating and passion-provoking. Increases Pitta and Vata. Suitable in moderation for active individuals.</p><p class="diet-col-sub">Stimulating Foods</p><ul class="diet-list"><li>Strong spices — chili, black pepper, mustard</li><li>Coffee, tea, chocolate, energy drinks</li><li>Onion, garlic, leek, shallot</li><li>Meat — especially poultry and fish</li></ul></div>
+      <div class="diet-col"><p class="diet-col-title">When Rajasic is Appropriate</p><ul class="diet-list"><li>Athletes and highly active individuals</li><li>Kapha types who need stimulation</li><li>During intense work or study periods</li><li>In cold seasons to generate internal heat</li></ul><p class="diet-col-sub">Balancing Rajasic Tendencies</p><ul class="diet-list"><li>Pair with cooling herbs — coriander, mint</li><li>Practice cooling yoga and pranayama daily</li><li>Spend time in nature and near water</li></ul></div>
+    </div>
+    <div id="diet-tamasic" class="diet-panel">
+      <div class="diet-col"><p class="diet-col-title">Tamasic Foods (तामसिक)</p><p style="font-style:italic;font-size:.8rem;color:rgba(192,168,112,.7);margin-bottom:.9rem;line-height:1.58;">Heavy, dull, obstructing. Promotes lethargy and disease. Increases Ama. Avoid as much as possible.</p><p class="diet-col-sub">Foods to Minimize</p><ul class="diet-list"><li>Leftover and reheated foods (next-day)</li><li>Processed, canned, and packaged foods</li><li>Alcohol, tobacco, recreational substances</li><li>Deep-fried and excessively oily foods</li></ul></div>
+      <div class="diet-col"><p class="diet-col-title">Effects of Tamas</p><ul class="diet-list"><li>Mental dullness, confusion, lack of clarity</li><li>Excessive sleep, lethargy, depression</li><li>Accumulation of Ama (digestive toxins)</li><li>Weakening of Ojas (vital immune essence)</li></ul><p class="diet-col-sub">Purification Path</p><ul class="diet-list"><li>Panchakarma — seasonal deep detoxification</li><li>Gradual transition to Sattvic foods</li><li>Morning hot water with lemon and ginger</li><li>Triphala churna — nightly digestive cleanser</li></ul></div>
+    </div>
+    <div id="diet-ritucharya" class="diet-panel">
+      <div class="diet-col"><p class="diet-col-title">Summer & Monsoon</p><p class="diet-col-sub">Grishma (Summer)</p><ul class="diet-list"><li>Cool, sweet, liquid-rich foods</li><li>Coconut water, buttermilk, fresh fruits</li><li>Avoid spicy, sour, and salty foods</li></ul><p class="diet-col-sub">Varsha (Monsoon)</p><ul class="diet-list"><li>Light, easily digestible foods</li><li>Avoid raw vegetables and leafy greens</li><li>Warm soups, cooked grains, ginger tea</li></ul></div>
+      <div class="diet-col"><p class="diet-col-title">Autumn & Winter</p><p class="diet-col-sub">Sharad (Autumn)</p><ul class="diet-list"><li>Sweet, bitter, and astringent tastes</li><li>Pomegranate, amla, leafy greens</li><li>Cooling herbs — coriander, sandalwood</li></ul><p class="diet-col-sub">Hemanta/Shishira (Winter)</p><ul class="diet-list"><li>Heavy, oily, warm, and nourishing foods</li><li>Sesame, jaggery, ghee, root vegetables</li><li>Warm spiced milk — best Rasayana season</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- WISDOM -->
+<section id="wisdom" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">सूक्तियाँ — Ancient Wisdom</span><h2 class="st">Sacred Thoughts from the Archive</h2><div class="sr"></div></div>
+    <div class="wisdom-grid">
+      <div class="scroll-quote reveal s1"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">हिताहितं सुखं दुःखमायुस्तस्य हिताहितम् ।<br>मानं च तच्च यत्रोक्तमायुर्वेदः स उच्यते ॥</p><p class="q-eng">"That science which declares what is beneficial and harmful to life, what is joyful and sorrowful — that is Ayurveda."</p><p class="q-src">— Charaka Samhita, Sutrasthana 1.41</p></div><div class="scroll-bot-bar"></div></div>
+      <div class="scroll-quote reveal s2"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">शरीरं आद्यं खलु धर्मसाधनम् ।</p><p class="q-eng">"The body is indeed the primary instrument for fulfilling all duties and purposes of life. Without health, dharma, wealth, and liberation cannot be pursued."</p><p class="q-src">— Kalidasa, Kumārasambhava 5.33</p></div><div class="scroll-bot-bar"></div></div>
+      <div class="scroll-quote reveal s3"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">आहारः प्रथमो वैद्यः ।</p><p class="q-eng">"Food is the first physician. What we consume becomes our body, our mind, and our consciousness. The wise prescribe proper diet before all medicines."</p><p class="q-src">— Ancient Ayurvedic Aphorism</p></div><div class="scroll-bot-bar"></div></div>
+      <div class="scroll-quote reveal s4"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">योगश्चित्तवृत्तिनिरोधः ।</p><p class="q-eng">"Yoga is the cessation of the fluctuations of the mind. When the mind becomes still as a lamp in a windless place, one experiences the self beyond suffering."</p><p class="q-src">— Yoga Sutras of Patanjali, 1.2</p></div><div class="scroll-bot-bar"></div></div>
+      <div class="scroll-quote reveal s5"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">सर्वे भवन्तु सुखिनः ।<br>सर्वे सन्तु निरामयाः ॥</p><p class="q-eng">"May all beings be happy. May all beings be free from disease. May all beings witness auspiciousness, and may none suffer."</p><p class="q-src">— Brihadaranyaka Upanishad</p></div><div class="scroll-bot-bar"></div></div>
+      <div class="scroll-quote reveal s6"><div class="scroll-top-bar"></div><div class="scroll-inner"><p class="q-skt">स्वस्थस्य स्वास्थ्यरक्षणं आतुरस्य विकारप्रशमनं च ।</p><p class="q-eng">"To preserve the health of the healthy, and to cure the diseases of the sick — these two are the twin purposes of Ayurveda."</p><p class="q-src">— Sushruta Samhita, Sutrasthana 1.14</p></div><div class="scroll-bot-bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- MODERN -->
+<section id="modern" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">आधुनिक संदर्भ — Ancient Wisdom for Modern Times</span><h2 class="st">Ayurveda in Your Daily Life</h2><div class="sr"></div><p class="sdesc">Ancient wisdom does not fade — it transforms. Ayurveda offers precise answers to the deepest ailments of modern life.</p></div>
+    <div class="modern-grid">
+      <div class="modern-card reveal s1"><span class="mc-icon">📱</span><h3 class="mc-title">Screen Fatigue & Digital Overload</h3><p class="mc-desc">Excessive screen use is Vata-aggravating — drying the eyes, depleting Ojas, scattering the mind. Nasya oil, eye washing with rose water, and screen-free mornings restore balance.</p></div>
+      <div class="modern-card reveal s2"><span class="mc-icon">🍔</span><h3 class="mc-title">Fast Food & Processed Diets</h3><p class="mc-desc">Processed foods are quintessentially Tamasic — dead, depleted of prana, loaded with Ama. Triphala before bed and digestive spices at every meal reset the digestive system.</p></div>
+      <div class="modern-card reveal s3"><span class="mc-icon">😰</span><h3 class="mc-title">Chronic Stress & Anxiety</h3><p class="mc-desc">Modern stress is Vata and Pitta imbalance made epidemic. Ashwagandha, Abhyanga self-oil massage, and Nadi Shodhana pranayama are Ayurveda's proven answers.</p></div>
+      <div class="modern-card reveal s4"><span class="mc-icon">💤</span><h3 class="mc-title">Sleep Disorders & Insomnia</h3><p class="mc-desc">Ayurveda calls proper sleep (Nidra) one of the three pillars of life. Warm milk with ashwagandha, scalp massage, and sleeping before 10 PM restore natural sleep cycles.</p></div>
+      <div class="modern-card reveal s5"><span class="mc-icon">🏙️</span><h3 class="mc-title">Urban Disconnection from Nature</h3><p class="mc-desc">Barefoot walking on earth, morning sun exposure, growing herbs at home, and moon gazing restore the elemental equilibrium modern city life systematically destroys.</p></div>
+      <div class="modern-card reveal s6"><span class="mc-icon">🎓</span><h3 class="mc-title">Students & Working Professionals</h3><p class="mc-desc">Brahmi for memory, Triphala for gut-brain support, Yoga Nidra (20 min = 4 hours rest), and Nadi Shodhana before exams — these are ancient secrets for modern success.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="lamp-div"><span class="li">🪔</span></div>
+
+<!-- ABOUT -->
+<section id="about" style="z-index:5;position:relative;">
+  <div class="sw">
+    <div class="sh reveal"><span class="se">परिचय — वैद्य गण</span><h2 class="st">Our Sacred Circle</h2><div class="sr"></div></div>
+    <div class="about-wrap">
+      <div class="reveal">
+        <div class="emblem-ring"><span class="emblem-center">🪷</span></div>
+        <p class="ab-name">Vaidya Granthalaya Collective</p>
+        <p class="ab-sub">— वैद्य गण — Maharashtra, India</p>
+        <div style="margin-top:1.4rem;text-align:center;">
+          <div style="display:inline-flex;gap:.8rem;flex-wrap:wrap;justify-content:center;">
+            <span style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.82rem;color:rgba(201,168,76,.45);">ज्ञानं</span>
+            <span style="color:rgba(201,168,76,.3);">·</span>
+            <span style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.82rem;color:rgba(201,168,76,.45);">सेवा</span>
+            <span style="color:rgba(201,168,76,.3);">·</span>
+            <span style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.82rem;color:rgba(201,168,76,.45);">आरोग्य</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="ab-text">We are a gathering of developers, researchers, and knowledge preservationists from Maharashtra, bound together by a sacred devotion to Ayurvedic heritage. Our mission is to carry the torch of ancient healing wisdom into the digital age — making this eternal science accessible to every seeker.</p>
+        <p class="ab-text">This project began as a vision to build a digital sanctuary where ancient Ayurvedic knowledge could live, breathe, and reach those who seek healing. We honor the great Vaidyas whose manuscripts guide every page of this archive.</p>
+        <div class="team-grid">
+          <div class="member"><div class="mav">SM</div><div><span class="mname">Swaroop Mandhare</span><span class="mrole">Lead Developer & Architect</span></div></div>
+          <div class="member"><div class="mav">ML</div><div><span class="mname">Mohit Lande</span><span class="mrole">Content & Knowledge Curator</span></div></div>
+          <div class="member"><div class="mav">MD</div><div><span class="mname">Mayank Dhawad</span><span class="mrole">UI Designer & Developer</span></div></div>
+          <div class="member"><div class="mav">AA</div><div><span class="mname">Abhijeet Aghao</span><span class="mrole">Ayurvedic Research & Data</span></div></div>
+          <div class="member"><div class="mav">NS</div><div><span class="mname">Neel Sinare</span><span class="mrole">Frontend Developer</span></div></div>
+          <div class="member"><div class="mav">MK</div><div><span class="mname">Mashhood Khan</span><span class="mrole">Backend & Integration</span></div></div>
+          <div class="member" style="grid-column:1/-1;max-width:calc(50% - .375rem);">
+            <div class="mav">MM</div><div><span class="mname">Mandar More</span><span class="mrole">Quality Assurance & Testing</span></div>
+          </div>
+        </div>
+        <div class="ab-quote">
+          <p>We do not claim to own this knowledge. We are temporary custodians — humbled recipients of a torch passed from Vaidya to Vaidya across a hundred generations. Our sacred duty is to carry it forward, undimmed.</p>
+          <cite>— Swaroop Mandhare, Vaidya Granthalaya · Maharashtra · 2024</cite>
+        </div>
+        <div class="mission-row">
+          <div><p class="mi-t">Preservation</p><p class="mi-d">Rescuing Ayurvedic manuscripts from digital obscurity</p></div>
+          <div><p class="mi-t">Education</p><p class="mi-d">Making 5000 years of wisdom accessible to modern seekers</p></div>
+          <div><p class="mi-t">Innovation</p><p class="mi-d">Blending AI with ancient knowledge for personalized healing</p></div>
+          <div><p class="mi-t">Community</p><p class="mi-d">Building a global sangha of Ayurvedic practitioners</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="sw">
+    <span class="fom">ॐ</span>
+    <div style="display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:1.1rem;max-width:400px;margin-left:auto;margin-right:auto;"><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);"></div><span style="color:var(--gold-d);font-size:.72rem;">✦ ✦ ✦</span><div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);"></div></div>
+    <p class="ftxt">Vaidya Granthalaya · Ancient Ayurvedic Archive · Maharashtra · 2024</p>
+    <p class="ftxt" style="margin-top:.45rem;">सर्वे भवन्तु सुखिनः · सर्वे सन्तु निरामयाः · सर्वे पश्यन्तु मङ्गलम्</p>
+    <p class="fblessing">Crafted with devotion by the Vaidya Granthalaya Collective</p>
+    <p class="fblessing" style="margin-top:.3rem;font-size:.68rem;">Swaroop Mandhare · Mohit Lande · Mayank Dhawad · Abhijeet Aghao · Neel Sinare · Mashhood Khan · Mandar More</p>
+  </div>
+</footer>
+
+<script>
+/* ════ PLANT DATA ════ */
+const plantsData=[
+  {name:"Tulsi",sanskrit:"तुलसी (Ocimum sanctum)",scientific:"Ocimum sanctum L.",category:"rasayana",emoji:"🌿",description:"Queen of Herbs — most sacred of all Ayurvedic plants",importance:"Respiratory health, immune function, spiritual well-being.",medicinalUses:"Cough, cold, fever, immunity, stress, anxiety, viral infections",partsUsed:"Leaves, stems, seeds, roots",dosage:"1-2 cups tea daily",sideEffects:"Generally safe; avoid in high doses during pregnancy",preparation:"Fresh/dried leaves as tea or powder",cultivation:{soil:"Well-drained loamy, pH 6-7.5",climate:"Warm tropical, 20-30°C",propagation:"Seeds or cuttings",irrigation:"Moderate, avoid waterlogging",fertilizer:"Organic compost + NPK monthly",pestDisease:"Leaf spot, aphids — use neem spray",harvesting:"After 60 days, multiple cuttings year-round"}},
+  {name:"Ashwagandha",sanskrit:"अश्वगंधा (Withania somnifera)",scientific:"Withania somnifera (L.) Dunal",category:"rasayana",emoji:"💪",description:"Premier adaptogen — strength of a horse",importance:"Energy, stamina, mental clarity, emotional resilience.",medicinalUses:"Stress, anxiety, weakness, insomnia, energy, stamina, thyroid",partsUsed:"Root, berries, leaves",dosage:"500mg-2g powder daily with warm milk",sideEffects:"May cause drowsiness; avoid during pregnancy",preparation:"Root powder with milk or in capsule form",cultivation:{soil:"Sandy loam, pH 7-8, well-drained",climate:"Dry subtropical, 25-35°C",propagation:"Seeds (soaked 24h before sowing)",irrigation:"Low — drought tolerant once established",fertilizer:"Organic manure, minimal nitrogen",pestDisease:"Root rot — ensure proper drainage; aphids — neem",harvesting:"150-180 days; harvest roots in winter"}},
+  {name:"Amalaki",sanskrit:"आमलकी (Phyllanthus emblica)",scientific:"Phyllanthus emblica L.",category:"rasayana",emoji:"🍊",description:"Indian Gooseberry — mother of all Rasayanas",importance:"Rejuvenating fruit, richest natural source of Vitamin C.",medicinalUses:"Immunity, digestion, skin health, hair growth, anti-aging, diabetes",partsUsed:"Fruit, seeds, bark, leaves",dosage:"1-3g dried powder daily",sideEffects:"Safe; excess may cause mild loose stools",preparation:"Dried powder, fresh juice, or Chyawanprash",cultivation:{soil:"Well-drained, pH 6-7.5, tolerates poor soil",climate:"Tropical/subtropical, 10-40°C",propagation:"Seeds or vegetative (budding)",irrigation:"Moderate; drought-tolerant once established",fertilizer:"Organic compost twice yearly",pestDisease:"Aphids, fungal leaf blight — copper spray",harvesting:"3-5 years to first fruit; harvest Oct-Feb"}},
+  {name:"Guduchi",sanskrit:"गुडूची (Tinospora cordifolia)",scientific:"Tinospora cordifolia (Willd.) Miers",category:"rasayana",emoji:"🔰",description:"Amrita — nectar of immortality",importance:"Immune-boosting, detoxifying, rejuvenating.",medicinalUses:"Fever, immunity, liver disorders, detox, inflammation, diabetes",partsUsed:"Stem, leaves, root",dosage:"1-3g powder or 30ml juice daily",sideEffects:"Safe; may lower blood sugar — monitor if diabetic",preparation:"Powder, decoction, fresh juice",cultivation:{soil:"Well-drained, pH 6-7.5, any soil type",climate:"Tropical/subtropical, 15-38°C",propagation:"Stem cuttings (30cm length best)",irrigation:"Moderate; drought-tolerant",fertilizer:"Organic compost",pestDisease:"Very few; generally pest-resistant",harvesting:"Stems harvested as needed after 1 year"}},
+  {name:"Brahmi",sanskrit:"ब्राह्मी (Bacopa monnieri)",scientific:"Bacopa monnieri (L.) Pennell",category:"medicinal",emoji:"🧠",description:"Brain food of the sages",importance:"Premier brain tonic, enhances intellect and memory.",medicinalUses:"Memory, cognitive clarity, anxiety, epilepsy, ADHD support",partsUsed:"Leaves and stems (whole plant)",dosage:"1-2g powder or 10ml juice daily",sideEffects:"Generally safe; may cause nausea if taken without food",preparation:"Fresh juice, churna, or medicated ghee",cultivation:{soil:"Moist, rich soil near water bodies",climate:"Tropical, loves humidity, 15-35°C",propagation:"Cuttings or division",irrigation:"Keep moist; thrives near ponds",fertilizer:"Organic compost",pestDisease:"Few; watch for fungal issues in poor drainage",harvesting:"Harvest leaves and stems as needed year-round"}},
+  {name:"Shatavari",sanskrit:"शतावरी (Asparagus racemosus)",scientific:"Asparagus racemosus Willd.",category:"rasayana",emoji:"👩",description:"She who has a hundred husbands — supreme female tonic",importance:"Female reproductive health, fertility support, hormonal balance.",medicinalUses:"Female health, fertility, menstrual regulation, lactation, digestion",partsUsed:"Root (tuberous)",dosage:"1-2g powder with milk twice daily",sideEffects:"Safe; avoid if estrogen-sensitive",preparation:"Powder with warm milk or ghee",cultivation:{soil:"Sandy loam, well-drained, pH 6-8",climate:"Tropical/subtropical",propagation:"Seeds or root cuttings",irrigation:"Moderate; regular watering",fertilizer:"Organic compost + potassium",pestDisease:"Root rot — ensure drainage; rust fungus",harvesting:"Roots harvested after 2-3 years"}},
+  {name:"Haritaki",sanskrit:"हरीतकी (Terminalia chebula)",scientific:"Terminalia chebula Retz.",category:"medicinal",emoji:"🌰",description:"King of Herbs — universal healer",importance:"Universal healer and rejuvenator in all three dosha systems.",medicinalUses:"Digestion, gentle laxative, detox, cholesterol, respiratory",partsUsed:"Dried fruit (pericarp)",dosage:"1-3g powder at bedtime with warm water",sideEffects:"Mild laxative effect; avoid during pregnancy",preparation:"Powder, decoction, or part of Triphala",cultivation:{soil:"Well-drained, rocky soils, pH 6-8",climate:"Tropical dry, 20-38°C",propagation:"Seeds or grafting",irrigation:"Moderate; drought-tolerant when mature",fertilizer:"Minimal — organic compost",pestDisease:"Generally resistant; occasional scale insects",harvesting:"Fruits collected when mature (yellow-green)"}},
+  {name:"Bibhitaki",sanskrit:"बिभीतकी (Terminalia bellirica)",scientific:"Terminalia bellirica Roxb.",category:"medicinal",emoji:"🍒",description:"The fearless one — powerful detoxifier",importance:"Lung health, detoxification, Kapha balancer.",medicinalUses:"Respiratory, detox, hair growth, eye health, voice clarity",partsUsed:"Dried fruit",dosage:"1-3g powder daily",sideEffects:"Safe; very mild laxative in high doses",preparation:"Powder alone or in Triphala combination",cultivation:{soil:"Any well-drained soil, pH 6-8",climate:"Tropical, 20-40°C",propagation:"Seeds",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Collect fallen fruits Oct-Feb"}},
+  {name:"Gotu Kola",sanskrit:"गोटु कोला (Centella asiatica)",scientific:"Centella asiatica (L.) Urb.",category:"medicinal",emoji:"🌱",description:"Brain food of the forest sages",importance:"Mental clarity, circulation enhancement, wound healing.",medicinalUses:"Memory, concentration, anxiety, circulation, skin conditions",partsUsed:"Leaves and stems",dosage:"1-2g powder or 15ml juice twice daily",sideEffects:"Safe; avoid long-term use without breaks",preparation:"Fresh juice, powder, tea",cultivation:{soil:"Moist, well-drained, rich in humus",climate:"Tropical/subtropical",propagation:"Stem cuttings or runners",irrigation:"Keep moist but not waterlogged",fertilizer:"Rich organic compost",pestDisease:"Fungal issues in poor drainage",harvesting:"Harvest leaves as needed; cut stems 2cm above root"}},
+  {name:"Shilajit",sanskrit:"शिलाजीत (Mineral Pitch)",scientific:"Asphaltum punjabianum",category:"rasayana",emoji:"⛰️",description:"Conqueror of mountains and destroyer of weakness",importance:"Potent rejuvenator containing 84 minerals in ionic form.",medicinalUses:"Energy, stamina, vitality, strength, diabetes, cognitive function",partsUsed:"Natural resin exudate",dosage:"250-500mg dissolved in warm milk daily",sideEffects:"Safe if pure; ensure sourcing from reputable supplier",preparation:"Dissolved in warm milk or water",cultivation:{soil:"Collected from Himalayan rocks (not cultivated)",climate:"High altitude Himalayan (3000-5000m)",propagation:"Natural — harvested from rocks in summer",irrigation:"N/A",fertilizer:"N/A",pestDisease:"N/A",harvesting:"Collected from rock crevices in summer months"}},
+  {name:"Turmeric",sanskrit:"हल्दी (Curcuma longa)",scientific:"Curcuma longa L.",category:"spice",emoji:"🟡",description:"The Golden Herb — sacred healer",importance:"Anti-inflammatory, antioxidant, purifier of blood and mind.",medicinalUses:"Inflammation, pain, liver health, digestion, immunity, skin, cancer prevention",partsUsed:"Rhizome (fresh or dried)",dosage:"1-3g powder daily with black pepper",sideEffects:"Safe; high doses may thin blood",preparation:"Golden milk, curry powder, paste",cultivation:{soil:"Rich loamy, well-drained, pH 5-7.5",climate:"Warm humid, 20-35°C",propagation:"Rhizome pieces (finger rhizomes)",irrigation:"Regular — do not let dry out",fertilizer:"Heavy feeder — organic compost + NPK",pestDisease:"Rhizome rot — avoid waterlogging; leaf blight",harvesting:"7-9 months after planting; leaves yellow when ready"}},
+  {name:"Ginger",sanskrit:"अदरक (Zingiber officinale)",scientific:"Zingiber officinale Roscoe",category:"spice",emoji:"🔥",description:"Universal medicine — the great warming herb",importance:"Warming spice, digestive fire igniter, circulation booster.",medicinalUses:"Digestion, nausea, inflammation, circulation, cold, vomiting",partsUsed:"Rhizome (fresh or dried)",dosage:"1-2g dried powder or 5g fresh daily",sideEffects:"Safe; may irritate if taken on empty stomach",preparation:"Fresh juice, dried powder, tea, or cooking",cultivation:{soil:"Well-drained, sandy loam, pH 5.5-6.5",climate:"Warm, humid, partial shade, 25-30°C",propagation:"Rhizome pieces with 1-2 buds",irrigation:"Frequent — consistent moisture needed",fertilizer:"Rich organic compost",pestDisease:"Soft rot (bacterial) — key risk; avoid overwatering",harvesting:"6-8 months; fresh ginger at 5 months"}},
+  {name:"Cinnamon",sanskrit:"दालचीनी (Cinnamomum verum)",scientific:"Cinnamomum verum J. Presl",category:"spice",emoji:"🤎",description:"The warming bark of metabolic healing",importance:"Blood sugar regulation, circulation, warming digestive spice.",medicinalUses:"Blood sugar, diabetes support, circulation, digestion, antibacterial",partsUsed:"Inner bark (quills)",dosage:"1-2g powder daily",sideEffects:"Safe in culinary amounts; high doses may affect liver",preparation:"Ground powder, bark in cooking, tea",cultivation:{soil:"Sandy loam, well-drained, slightly acidic",climate:"Warm tropical, 20-30°C, humid",propagation:"Seeds or cuttings",irrigation:"Regular; cannot tolerate drought",fertilizer:"Organic compost",pestDisease:"Leaf blight, stem canker — proper spacing",harvesting:"Bark stripped from 2-year-old branches; regenerates"}},
+  {name:"Cardamom",sanskrit:"इलायची (Elettaria cardamomum)",scientific:"Elettaria cardamomum (L.) Maton",category:"spice",emoji:"💚",description:"Queen of Spices — aromatic digestive",importance:"Aromatic spice, digestion enhancer, breath freshener.",medicinalUses:"Digestion, breath freshening, throat, urinary infections, nausea",partsUsed:"Pods and seeds",dosage:"1-3g powder or 2-3 pods daily",sideEffects:"Safe in normal amounts",preparation:"Whole pods, ground powder, or decoction",cultivation:{soil:"Rich, loamy, well-drained, slightly acidic pH 5-6.5",climate:"Tropical, shaded, 10-35°C with high humidity",propagation:"Seeds or rhizome divisions",irrigation:"Regular; needs consistent moisture",fertilizer:"Rich organic compost + shade from trees",pestDisease:"Capsule rot, thrips — regular inspection",harvesting:"Pods harvested when mature but still green (2-3 years)"}},
+  {name:"Black Pepper",sanskrit:"काली मिर्च (Piper nigrum)",scientific:"Piper nigrum L.",category:"spice",emoji:"⚫",description:"Black Gold — king of the spice trade",importance:"Bioavailability enhancer, digestive stimulant.",medicinalUses:"Digestion, nutrient absorption (piperine), thermogenesis, respiratory",partsUsed:"Unripe berries (dried)",dosage:"500mg-1g powder daily",sideEffects:"Safe; may irritate in large amounts",preparation:"Ground or whole in cooking",cultivation:{soil:"Rich loamy, well-drained, humus-rich pH 5-6",climate:"Tropical, hot humid, 20-30°C",propagation:"Stem cuttings on support (betel palm tree)",irrigation:"Regular; needs humid conditions",fertilizer:"Organic compost + potassium",pestDisease:"Phytophthora root rot — main threat; neem preventive",harvesting:"When berries turn red (3-4 years to first harvest)"}},
+  {name:"Clove",sanskrit:"लौंग (Syzygium aromaticum)",scientific:"Syzygium aromaticum (L.) Merr.",category:"spice",emoji:"🌸",description:"The dental guardian — sacred antimicrobial",importance:"Antimicrobial, analgesic, and warming digestive herb.",medicinalUses:"Dental pain, digestion, antiseptic, respiratory, bad breath",partsUsed:"Flower buds",dosage:"1-2 buds or 100mg powder daily",sideEffects:"Safe in culinary amounts; avoid clove oil undiluted",preparation:"Whole buds, powder, or oil",cultivation:{soil:"Rich loamy, well-drained, pH 5.5-6.5",climate:"Tropical coastal, 20-30°C",propagation:"Seeds (fresh only)",irrigation:"Regular; needs humidity",fertilizer:"Organic compost",pestDisease:"Sudden death disease — main threat",harvesting:"Buds harvested before opening (4-7 years to first harvest)"}},
+  {name:"Fenugreek",sanskrit:"मेथी (Trigonella foenum-graecum)",scientific:"Trigonella foenum-graecum L.",category:"spice",emoji:"🌾",description:"The metabolic support seed",importance:"Blood sugar management, lactation support, digestive tonic.",medicinalUses:"Blood sugar, lactation, vitality, joint health, digestion",partsUsed:"Seeds and leaves (both edible)",dosage:"5-30g seeds daily",sideEffects:"Mild digestive upset; maple-like body odor",preparation:"Seeds soaked, powdered, sprouted, or cooked as leaves",cultivation:{soil:"Well-drained, sandy loam, pH 6-7",climate:"Temperate to subtropical, 10-28°C",propagation:"Direct seed sowing",irrigation:"Moderate — does not like waterlogging",fertilizer:"Minimal — nitrogen-fixer",pestDisease:"Powdery mildew — ensure airflow",harvesting:"Seeds at 90-120 days; leaves at 20-30 days"}},
+  {name:"Cumin",sanskrit:"जीरा (Cuminum cyminum)",scientific:"Cuminum cyminum L.",category:"spice",emoji:"🟤",description:"Digestive fire in seed form",importance:"Digestive enzyme enhancer, carminative, nutrient absorber.",medicinalUses:"Digestion, gas relief, metabolism, lactation, blood sugar",partsUsed:"Seeds",dosage:"1-3g powder or whole seeds daily",sideEffects:"Safe in normal amounts",preparation:"Roasted whole seeds or ground powder",cultivation:{soil:"Well-drained, sandy, pH 6.8-8.3",climate:"Hot dry, 25-30°C",propagation:"Direct seeding in autumn/spring",irrigation:"Low — drought-tolerant",fertilizer:"Minimal; phosphorus helpful",pestDisease:"Wilt disease — main concern; aphids",harvesting:"Seeds at 90-120 days when plants turn yellow"}},
+  {name:"Coriander",sanskrit:"धनिया (Coriandrum sativum)",scientific:"Coriandrum sativum L.",category:"spice",emoji:"🍃",description:"The cooling balancing spice",importance:"Cooling, Pitta-pacifying, urinary and digestive support.",medicinalUses:"Cooling, urinary health, digestion, anti-inflammatory, detox",partsUsed:"Seeds and fresh leaves (cilantro)",dosage:"2-3g seeds or generous fresh leaves daily",sideEffects:"Very safe",preparation:"Seeds as powder or decoction; leaves fresh",cultivation:{soil:"Light well-drained, pH 6-7",climate:"Cool temperate, 17-27°C",propagation:"Direct seed sowing (split seeds before planting)",irrigation:"Moderate; regular watering",fertilizer:"Light organic compost",pestDisease:"Generally hardy; aphids occasionally",harvesting:"Leaves from 30 days; seeds at 60-90 days"}},
+  {name:"Fennel",sanskrit:"सौंफ (Foeniculum vulgare)",scientific:"Foeniculum vulgare Mill.",category:"spice",emoji:"🌿",description:"The digestive aid after every sacred meal",importance:"Carminative, digestive enhancer, breath freshener, cooling.",medicinalUses:"Digestion, gas, bloating, breath freshening, eye health, lactation",partsUsed:"Seeds, leaves, bulb",dosage:"1-2g seeds (chewed) or as tea after meals",sideEffects:"Safe; avoid large amounts in pregnancy",preparation:"Chewed raw, as tea, or powder",cultivation:{soil:"Rich well-drained, pH 5.5-7",climate:"Temperate, 15-25°C",propagation:"Seeds",irrigation:"Moderate; drought tolerant once established",fertilizer:"Compost-rich soil",pestDisease:"Aphids, root rot in poor drainage",harvesting:"Seeds at 90 days; bulb at 65-80 days"}},
+  {name:"Neem",sanskrit:"नीम (Azadirachta indica)",scientific:"Azadirachta indica A. Juss.",category:"tree",emoji:"🌲",description:"The Village Pharmacy — nature's complete healer",importance:"Blood purifier, detoxifier, antimicrobial, immune enhancer.",medicinalUses:"Blood purification, skin diseases, anti-parasitic, fever, dental",partsUsed:"Leaves, bark, seeds, oil, roots, flowers",dosage:"1-2g powder or 10ml leaf juice twice daily",sideEffects:"Safe; avoid high doses internally for long periods",preparation:"Powder, decoction, oil, neem toothstick",cultivation:{soil:"Any type, pH 6-8.5 — highly adaptable",climate:"Hot arid to humid tropical, 20-45°C",propagation:"Fresh seeds (plant within days)",irrigation:"Minimal once established; drought champion",fertilizer:"None required",pestDisease:"Extremely resistant — used as pesticide",harvesting:"Leaves year-round; seeds annually in summer"}},
+  {name:"Banyan",sanskrit:"बरगद (Ficus benghalensis)",scientific:"Ficus benghalensis L.",category:"tree",emoji:"🌳",description:"The eternal life tree — sacred to all traditions",importance:"Cellular rejuvenation, reproductive health, stability.",medicinalUses:"Digestion, hemorrhoids, skin disorders, bone health, reproductive",partsUsed:"Bark, aerial roots, latex, leaves",dosage:"1-2g bark powder twice daily",sideEffects:"Safe",preparation:"Bark powder or decoction",cultivation:{soil:"Various; adapts well, pH 6-7.5",climate:"Tropical/subtropical",propagation:"Seeds or cuttings",irrigation:"Moderate once established",fertilizer:"Minimal",pestDisease:"Generally resistant",harvesting:"Bark as needed; does not require harvesting"}},
+  {name:"Peepal",sanskrit:"पीपल (Ficus religiosa)",scientific:"Ficus religiosa L.",category:"tree",emoji:"🍂",description:"The sacred Bodhi tree — Buddha's enlightenment tree",importance:"Healing properties, anti-diabetic, spiritual significance.",medicinalUses:"Skin conditions, digestion, diarrhea, respiratory, diabetic support",partsUsed:"Bark, leaves, fruit, latex",dosage:"1-2g bark powder twice daily",sideEffects:"Safe",preparation:"Bark powder or decoction",cultivation:{soil:"Various; tolerates rocky soil",climate:"Tropical/subtropical",propagation:"Seeds or air layering",irrigation:"Moderate",fertilizer:"Minimal",pestDisease:"Generally resistant",harvesting:"Leaves, bark as needed — regenerates"}},
+  {name:"Arjuna",sanskrit:"अर्जुन (Terminalia arjuna)",scientific:"Terminalia arjuna (Roxb.) Wight & Arn.",category:"tree",emoji:"❤️",description:"Guardian of the heart — cardiac tonic supreme",importance:"Strengthens heart muscle, improves circulation, reduces cholesterol.",medicinalUses:"Heart health, blood pressure, cholesterol, circulation, angina",partsUsed:"Bark, fruits",dosage:"1-3g bark powder with milk twice daily",sideEffects:"Safe; consult physician if on cardiac medication",preparation:"Bark powder with milk (Arjuna Ksheerapaka)",cultivation:{soil:"Well-drained, near water bodies preferred",climate:"Tropical, 15-38°C",propagation:"Seeds (fresh) or cuttings",irrigation:"Moderate; drought-tolerant once mature",fertilizer:"Minimal — organic compost",pestDisease:"Generally resistant",harvesting:"Bark stripped in strips from mature trees annually"}},
+  {name:"Bilva",sanskrit:"बिल्व (Aegle marmelos)",scientific:"Aegle marmelos (L.) Corrêa",category:"tree",emoji:"🟠",description:"Sacred fruit of Shiva — divine digestive healer",importance:"Chronic digestive conditions, IBS, chronic diarrhea.",medicinalUses:"Diarrhea, IBS, digestion, fever, respiratory, ulcers",partsUsed:"Fruit (unripe and ripe), leaves, bark, root",dosage:"1-3g dried powder or 30ml pulp daily",sideEffects:"Safe",preparation:"Dried powder, fresh pulp, sherbet, or decoction",cultivation:{soil:"Well-drained, slightly alkaline OK, pH 6-8",climate:"Tropical/subtropical, 8-45°C",propagation:"Seeds or root suckers",irrigation:"Moderate; drought-tolerant once mature",fertilizer:"Organic compost",pestDisease:"Very resistant",harvesting:"Unripe fruit for diarrhea; ripe fruit as food (5-7 years)"}},
+  {name:"Sandalwood",sanskrit:"चंदन (Santalum album)",scientific:"Santalum album L.",category:"tree",emoji:"🤍",description:"The sacred cooling oil of temples and meditation",importance:"Cooling, Pitta-pacifying, meditation aid, emotional balance.",medicinalUses:"Skin cooling, UTI, emotional balance, fever, antiseptic",partsUsed:"Heartwood, oil",dosage:"1-2g powder or few drops oil diluted",sideEffects:"Safe topically; avoid undiluted oil internally",preparation:"Paste with rose water, decoction, aromatic oil",cultivation:{soil:"Rocky, well-drained, pH 6-7.5 — hemiparasitic",climate:"Tropical semi-arid, 12-36°C",propagation:"Seeds with host plant",irrigation:"Low — drought tolerant",fertilizer:"Host plant provides nutrients",pestDisease:"Spike disease — serious viral threat",harvesting:"Heartwood at 30-40 years (sustainably harvested)"}},
+  {name:"Ashoka",sanskrit:"अशोक (Saraca asoca)",scientific:"Saraca asoca (Roxb.) de Wilde",category:"tree",emoji:"💐",description:"Remover of sorrow — supreme female tonic tree",importance:"Female reproductive tonic, uterine health, menstrual regulation.",medicinalUses:"Female health, menstruation, uterine toning, emotional balance",partsUsed:"Bark, flowers",dosage:"1-2g bark powder twice daily",sideEffects:"Safe for women; consult physician for men",preparation:"Bark decoction, powder with milk",cultivation:{soil:"Well-drained, moist, slightly acid pH 5-7",climate:"Tropical/subtropical, partial shade",propagation:"Seeds or cuttings",irrigation:"Regular — needs moisture",fertilizer:"Organic compost",pestDisease:"Scale insects occasionally",harvesting:"Bark from branches as needed; flowers in spring"}},
+  {name:"Moringa",sanskrit:"शिग्रु (Moringa oleifera)",scientific:"Moringa oleifera Lam.",category:"tree",emoji:"🌿",description:"The Miracle Tree — world's most nutrient-dense plant",importance:"Exceptionally nutritious, anti-inflammatory, multi-system support.",medicinalUses:"Nutrition, energy, inflammation, blood sugar, anemia, lactation",partsUsed:"Leaves, seeds, pods, flowers, roots",dosage:"5-15g dried leaf powder daily",sideEffects:"Very safe; start with small doses",preparation:"Powder in food, fresh leaves cooked, seed oil",cultivation:{soil:"Sandy, well-drained, pH 6-7 — grows in poor soil",climate:"Tropical, 25-35°C — fast growing",propagation:"Seeds or hardwood cuttings",irrigation:"Low — extremely drought tolerant",fertilizer:"Minimal; nitrogen helpful",pestDisease:"Very resistant; aphids occasionally",harvesting:"Leaves in 60 days; pods at 6-8 months; continuous"}},
+  {name:"Guggul",sanskrit:"गुग्गुल (Commiphora wightii)",scientific:"Commiphora wightii (Arn.) Bhandari",category:"tree",emoji:"🟫",description:"Sacred resin of the Vedas — the great purifier",importance:"Cholesterol management, joint health, thyroid support.",medicinalUses:"Cholesterol, joints, arthritis, circulation, thyroid, weight management",partsUsed:"Gum resin",dosage:"500mg-2g purified resin daily",sideEffects:"Safe; may thin blood — caution with anticoagulants",preparation:"Purified extract, tablets, or powder",cultivation:{soil:"Rocky, arid, well-drained, pH 7-8.5",climate:"Hot arid and semi-arid, 25-40°C",propagation:"Stem cuttings (difficult to establish)",irrigation:"Minimal — deep-rooted desert plant",fertilizer:"None required",pestDisease:"Extremely resistant",harvesting:"Incisions made in bark to collect resin (5+ years)"}},
+  {name:"Lodhra",sanskrit:"लोध्र (Symplocos racemosa)",scientific:"Symplocos racemosa Roxb.",category:"tree",emoji:"👁️",description:"The eye and skin healer of ancient physicians",importance:"Eye health, skin complexion, female health.",medicinalUses:"Eye inflammation, skin disorders, female reproductive health, menstruation",partsUsed:"Bark, fruit",dosage:"1-2g bark powder twice daily",sideEffects:"Safe",preparation:"Bark powder or decoction",cultivation:{soil:"Well-drained forest soil",climate:"Tropical/subtropical, partial shade",propagation:"Seeds",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Bark collected from mature trees as needed"}},
+  {name:"Lotus",sanskrit:"कमल (Nelumbo nucifera)",scientific:"Nelumbo nucifera Gaertn.",category:"flower",emoji:"🪷",description:"Sacred purity in muddy waters — symbol of spiritual ascent",importance:"Heart calmer, emotional balance, cooling, sacred.",medicinalUses:"Heart palpitations, emotional balance, sleep disorders, stress, cooling",partsUsed:"Petals, seeds, rhizome, stamens",dosage:"1-2g seed powder or petal tea daily",sideEffects:"Safe",preparation:"Petal tea, seed powder, rhizome as food",cultivation:{soil:"Muddy, fertile, submerged in water 30-60cm",climate:"Tropical/subtropical, full sun, 25-35°C",propagation:"Seeds or rhizome division",irrigation:"Aquatic — grow in pond or large container",fertilizer:"Aquatic compost tablets",pestDisease:"Aphids, slugs",harvesting:"Flowers when open; seeds when mature; rhizome year-round"}},
+  {name:"Rose",sanskrit:"गुलाब (Rosa damascena)",scientific:"Rosa damascena Mill.",category:"flower",emoji:"🌹",description:"The heart-opener — supreme emotional balancer",importance:"Heart opener, Pitta-cooling, emotional and skin support.",medicinalUses:"Emotional balance, heart health, skin, cooling, Pitta-pacifying",partsUsed:"Petals, oil, rose water",dosage:"5-10 fresh petals or 1-2g powder daily",sideEffects:"Very safe",preparation:"Fresh petals, rose water, gulkand (rose jam), tea",cultivation:{soil:"Well-drained, pH 6-7, rich in organic matter",climate:"Temperate/subtropical, 15-28°C",propagation:"Cuttings or budding",irrigation:"Regular — do not let dry out",fertilizer:"Organic compost + phosphorus for blooms",pestDisease:"Black spot, aphids, spider mites",harvesting:"Flowers harvested in morning when fully open"}},
+  {name:"Jasmine",sanskrit:"जाति (Jasminum officinale)",scientific:"Jasminum officinale L.",category:"flower",emoji:"🌸",description:"The calming night flower — bringer of peace",importance:"Nervine calming, anxiety relief, sleep support.",medicinalUses:"Anxiety, insomnia, headache, depression, stress",partsUsed:"Flowers, oil",dosage:"5 fresh flowers or 1g dried in tea daily",sideEffects:"Safe",preparation:"Flower tea, aromatic oil, jasmine rice",cultivation:{soil:"Well-drained, moist, fertile, pH 6-7",climate:"Tropical/subtropical, 15-35°C",propagation:"Cuttings (semi-hardwood)",irrigation:"Regular; tolerates short dry periods",fertilizer:"Balanced organic compost",pestDisease:"Aphids, mealybugs",harvesting:"Flowers harvested in morning before fully open"}},
+  {name:"Hibiscus",sanskrit:"जपा (Hibiscus rosa-sinensis)",scientific:"Hibiscus rosa-sinensis L.",category:"flower",emoji:"🌺",description:"Blood pressure healer and hair nourisher",importance:"Blood pressure support, hair growth, digestion.",medicinalUses:"Blood pressure, hair growth, digestion, fever, skin cooling",partsUsed:"Flowers and leaves",dosage:"2-5g dried flower tea daily",sideEffects:"May lower blood pressure — monitor if on medication",preparation:"Hibiscus tea (Agua de Jamaica), powder, hair oil",cultivation:{soil:"Moist, well-drained, slightly acid pH 5.5-7",climate:"Tropical/subtropical, full sun",propagation:"Cuttings",irrigation:"Regular; drought-tolerant once established",fertilizer:"Balanced fertilizer — monthly",pestDisease:"Aphids, whitefly",harvesting:"Flowers harvested when fully open year-round"}},
+  {name:"Marigold",sanskrit:"गेंदा (Calendula officinalis)",scientific:"Calendula officinalis L.",category:"flower",emoji:"🌼",description:"The sacred wound healer — golden protector",importance:"Wound healing, skin care, antifungal, anti-inflammatory.",medicinalUses:"Wound healing, burns, skin inflammation, antifungal, eye care",partsUsed:"Flower heads",dosage:"2-4g dried flowers as tea or topical application",sideEffects:"Very safe; rare ragweed allergy cross-reaction",preparation:"Tea, infused oil, cream, poultice",cultivation:{soil:"Any well-drained, tolerant, pH 5.5-7",climate:"Cool temperate, 10-25°C",propagation:"Seeds (direct sowing)",irrigation:"Moderate",fertilizer:"Minimal",pestDisease:"Generally hardy; powdery mildew in humidity",harvesting:"Continuous harvest — cut flowers encourage more blooms"}},
+  {name:"Triphala",sanskrit:"त्रिफला (Three Sacred Fruits)",scientific:"Emblica/Terminalia combination",category:"medicinal",emoji:"⚕️",description:"The three-fruit miracle — Ayurveda's most celebrated formula",importance:"Complete digestive tonic, rejuvenator, gentle detoxifier.",medicinalUses:"Digestion, constipation, detox, immunity, eye health, anti-aging",partsUsed:"Equal parts Amalaki, Haritaki, Bibhitaki fruit",dosage:"3-6g powder in warm water before bed",sideEffects:"Safe; mild laxative effect initially",preparation:"Churna (powder) in warm water or honey",cultivation:{soil:"See individual fruit trees",climate:"Tropical",propagation:"Three separate trees",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"See individual components",harvesting:"See individual components — blend equal parts dried powder"}},
+  {name:"Punarnava",sanskrit:"पुनर्नवा (Boerhavia diffusa)",scientific:"Boerhavia diffusa L.",category:"medicinal",emoji:"💧",description:"The kidney and liver rejuvenator",importance:"Kidney rejuvenation, diuretic, liver protection.",medicinalUses:"Kidney disorders, edema, liver disease, urinary infections, detox",partsUsed:"Root, leaves (whole plant)",dosage:"1-2g powder twice daily",sideEffects:"Safe",preparation:"Root powder or decoction",cultivation:{soil:"Various; thrives in sandy or loamy soil",climate:"Tropical/subtropical",propagation:"Seeds or root cuttings",irrigation:"Moderate",fertilizer:"Minimal",pestDisease:"Generally resistant",harvesting:"Root harvested after 1 year; leaves as needed"}},
+  {name:"Musta",sanskrit:"मुस्ता (Cyperus rotundus)",scientific:"Cyperus rotundus L.",category:"medicinal",emoji:"🌾",description:"The cooling digestive tuber — Pitta pacifier",importance:"Digestive cooling, menstrual regulation, fever management.",medicinalUses:"Digestion, menstrual disorders, fever, skin conditions, diarrhea",partsUsed:"Tubers (rhizomes)",dosage:"1-2g powder twice daily",sideEffects:"Safe",preparation:"Powder or decoction",cultivation:{soil:"Moist, various soil types",climate:"Tropical/subtropical",propagation:"Tuber division",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Very resistant — considered a weed",harvesting:"Tubers harvested when mature (8-12 months)"}},
+  {name:"Noni",sanskrit:"अल (Morinda citrifolia)",scientific:"Morinda citrifolia L.",category:"medicinal",emoji:"🍈",description:"Ancient pain reliever and immune champion",importance:"Immune support, pain relief, adaptogenic properties.",medicinalUses:"Pain, immunity, digestion, blood pressure, diabetes support",partsUsed:"Fruit, leaves, roots",dosage:"30ml fresh juice or 2-3g powder daily",sideEffects:"Safe; strong fermented smell",preparation:"Fresh or fermented juice, powder supplement",cultivation:{soil:"Well-drained, sandy or loamy, tolerates poor soil",climate:"Tropical, 20-35°C",propagation:"Seeds or cuttings",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Fruit year-round when white and soft; begins in 18 months"}},
+  {name:"Kutki",sanskrit:"कुटकी (Picrorhiza kurroa)",scientific:"Picrorhiza kurroa Royle",category:"medicinal",emoji:"🏔️",description:"The Himalayan liver guardian",importance:"Liver cleansing, immune stimulation, bitter digestive.",medicinalUses:"Liver disorders, immune support, fever, hepatitis, skin, digestion",partsUsed:"Rhizome",dosage:"250-500mg powder twice daily",sideEffects:"Safe in recommended doses; very bitter",preparation:"Bitter powder or decoction",cultivation:{soil:"Alpine, rocky, well-drained, organic-rich",climate:"Cool Himalayan, 2000-4500m altitude, 5-20°C",propagation:"Seeds or rhizome division",irrigation:"Moderate; alpine rainfall pattern",fertilizer:"Rich organic matter",pestDisease:"Generally resistant at altitude",harvesting:"Rhizome at 3-4 years; sustainable harvesting critical"}},
+  {name:"Manjistha",sanskrit:"मंजिष्ठा (Rubia cordifolia)",scientific:"Rubia cordifolia L.",category:"medicinal",emoji:"🔴",description:"The blood purifier vine — skin beautifier",importance:"Blood purification, lymphatic support, skin health.",medicinalUses:"Blood purification, skin disorders, acne, eczema, liver, joint pain",partsUsed:"Root",dosage:"1-2g root powder twice daily",sideEffects:"May temporarily discolor urine orange-red (harmless)",preparation:"Root powder or decoction",cultivation:{soil:"Well-drained, loamy, slightly acidic",climate:"Tropical/subtropical",propagation:"Seeds or stem cuttings",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Roots harvested after 2-3 years"}},
+  {name:"Bhumyamalaki",sanskrit:"भूम्यामलकी (Phyllanthus niruri)",scientific:"Phyllanthus niruri L.",category:"medicinal",emoji:"🌿",description:"The stone-breaker — kidney and liver guardian",importance:"Kidney stone prevention, liver protection, antiviral.",medicinalUses:"Kidney stones, liver disorders, viral infections, urinary health",partsUsed:"Whole plant",dosage:"1-2g powder twice daily",sideEffects:"Safe",preparation:"Powder or decoction",cultivation:{soil:"Well-drained, various types",climate:"Tropical/subtropical",propagation:"Seeds",irrigation:"Moderate",fertilizer:"Minimal",pestDisease:"Generally resistant",harvesting:"Whole plant cut 2-3cm above root; multiple harvests"}},
+  {name:"Vasaka",sanskrit:"वासका (Adhatoda vasica)",scientific:"Adhatoda vasica Nees",category:"medicinal",emoji:"💨",description:"The breath healer — respiratory system specialist",importance:"Ayurveda's premier respiratory herb.",medicinalUses:"Cough, asthma, bronchitis, bleeding disorders, respiratory infections",partsUsed:"Leaves, bark, roots, flowers",dosage:"1-2g powder or 10ml leaf juice twice daily",sideEffects:"Safe; avoid high doses in pregnancy",preparation:"Leaf juice, decoction, churna",cultivation:{soil:"Well-drained, various soil types",climate:"Tropical/subtropical, semi-arid areas",propagation:"Stem cuttings",irrigation:"Moderate; drought tolerant",fertilizer:"Minimal",pestDisease:"Generally very resistant",harvesting:"Leaves year-round; bark from mature plants"}},
+  {name:"Aloe Vera",sanskrit:"घृतकुमारी (Aloe barbadensis)",scientific:"Aloe barbadensis Miller",category:"medicinal",emoji:"🌵",description:"The silent healer — sacred succulent",importance:"Skin healing, digestive cooling, immune support.",medicinalUses:"Burns, skin conditions, digestion, immunity, diabetes, constipation",partsUsed:"Gel (leaf pulp) and latex",dosage:"2-3 tablespoons fresh gel or 30ml juice daily",sideEffects:"Gel — very safe; latex — mild laxative, avoid in pregnancy",preparation:"Fresh gel directly, blended juice",cultivation:{soil:"Well-drained sandy, pH 6-8.5",climate:"Warm/arid, 13-40°C; survives drought",propagation:"Offset (pup) division",irrigation:"Very minimal — succulent, overwatering kills",fertilizer:"Very minimal; diluted organic twice yearly",pestDisease:"Root rot from overwatering; mealybugs",harvesting:"Outer leaves from mature plants; slice and scoop gel"}},
+  {name:"Kalmegh",sanskrit:"कालमेघ (Andrographis paniculata)",scientific:"Andrographis paniculata Nees",category:"medicinal",emoji:"💊",description:"King of Bitters — immune system champion",importance:"One of Ayurveda's strongest immune herbs.",medicinalUses:"Immunity, liver protection, fever, viral infections, diabetes",partsUsed:"Leaves and stems",dosage:"500mg-1g powder or tablet twice daily",sideEffects:"Very bitter; safe otherwise",preparation:"Bitter powder, tablet, or decoction",cultivation:{soil:"Well-drained, loamy, pH 6-7.5",climate:"Tropical/subtropical",propagation:"Seeds",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"At flowering stage for maximum andrographolide content"}},
+  {name:"Shankhpushpi",sanskrit:"शंखपुष्पी (Convolvulus pluricaulis)",scientific:"Convolvulus pluricaulis Choisy",category:"medicinal",emoji:"🐚",description:"Conch flower — memory and intelligence herb",importance:"Brain tonic, memory enhancer, mental fatigue healer.",medicinalUses:"Memory, intelligence, mental fatigue, anxiety, depression, insomnia",partsUsed:"Whole plant",dosage:"1-2g powder or syrup twice daily",sideEffects:"Safe",preparation:"Powder, syrup, decoction",cultivation:{soil:"Well-drained, sandy to loamy",climate:"Tropical/subtropical",propagation:"Seeds",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Whole plant at flowering stage"}},
+  {name:"Sarpagandha",sanskrit:"सर्पगंधा (Rauvolfia serpentina)",scientific:"Rauvolfia serpentina (L.) Benth.",category:"medicinal",emoji:"🐍",description:"The blood pressure calmer — snake-root",importance:"Blood pressure management, mental calming.",medicinalUses:"Hypertension, anxiety, insomnia, mental calm, snake-bite treatment",partsUsed:"Root",dosage:"600mg-1g powder daily (physician supervision)",sideEffects:"Consult physician — can cause hypotension",preparation:"Root powder under medical supervision",cultivation:{soil:"Well-drained, slightly acidic forest soil",climate:"Tropical shaded",propagation:"Seeds or root cuttings",irrigation:"Moderate; needs partial shade",fertilizer:"Organic compost",pestDisease:"Root rot in poor drainage",harvesting:"Roots at 2-3 years; sustainable practice critical"}},
+  {name:"Vidari",sanskrit:"विदारी (Pueraria tuberosa)",scientific:"Pueraria tuberosa DC.",category:"rasayana",emoji:"💎",description:"The youth-preserving tuber — Shukra builder",importance:"Rejuvenation, energy restoration, reproductive vitality.",medicinalUses:"Vitality, energy, reproductive health, weight, strength",partsUsed:"Tuberous root",dosage:"1-3g powder with warm milk twice daily",sideEffects:"Safe",preparation:"Powder with milk or ghee",cultivation:{soil:"Well-drained loamy, pH 6-7.5",climate:"Tropical/subtropical",propagation:"Tuberous roots or seeds",irrigation:"Moderate",fertilizer:"Organic compost",pestDisease:"Generally resistant",harvesting:"Tubers at 2-3 years in winter"}},
+  {name:"Pippali",sanskrit:"पिप्पली (Piper longum)",scientific:"Piper longum L.",category:"rasayana",emoji:"🌶️",description:"Long pepper Rasayana — the digestive fire catalyst",importance:"Respiratory, digestive, and rejuvenating Rasayana.",medicinalUses:"Respiratory health, digestion, metabolism boost, liver support",partsUsed:"Fruit (long pepper spikes), root",dosage:"500mg-1g powder daily",sideEffects:"Safe in recommended doses; very pungent",preparation:"Powder in ghee, decoction, or Trikatu blend",cultivation:{soil:"Rich loamy, humid, well-drained",climate:"Tropical, 20-30°C",propagation:"Stem cuttings",irrigation:"Regular; needs humidity",fertilizer:"Rich organic compost",pestDisease:"Root rot — ensure drainage",harvesting:"Fruits when mature but still green (2 years to establish)"}},
+  {name:"Yashtimadhu",sanskrit:"यष्टिमधु (Glycyrrhiza glabra)",scientific:"Glycyrrhiza glabra L.",category:"medicinal",emoji:"🍫",description:"Sweet root — the great soother and healer",importance:"Soothing, anti-inflammatory, adrenal and hormonal support.",medicinalUses:"Throat ulcers, gastric ulcers, adrenal fatigue, immune, hormonal",partsUsed:"Root",dosage:"1-3g powder or decoction daily",sideEffects:"High prolonged doses may raise blood pressure",preparation:"Powder, tea, decoction, lozenges",cultivation:{soil:"Deep well-drained, pH 6-8, tolerates alkaline",climate:"Temperate, 15-28°C",propagation:"Seeds or root division",irrigation:"Moderate; drought-tolerant once established",fertilizer:"Minimal; nitrogen-fixer",pestDisease:"Root rot — ensure drainage; leaf spot",harvesting:"Roots at 3-4 years in autumn"}}
+];
+
+const diseaseDB={
+  "acidity":["Amalaki","Shatavari","Yashtimadhu"],"anxiety":["Ashwagandha","Brahmi","Jasmine","Shankhpushpi"],
+  "arthritis":["Guggul","Ginger","Turmeric","Manjistha"],"asthma":["Vasaka","Tulsi","Pippali","Kantakari"],
+  "blood pressure":["Sarpagandha","Arjuna","Hibiscus","Punarnava"],"cholesterol":["Guggul","Arjuna","Turmeric"],
+  "cold & cough":["Tulsi","Ginger","Turmeric","Vasaka","Clove"],"constipation":["Haritaki","Bilva","Triphala","Amalaki"],
+  "dental health":["Clove","Neem","Yashtimadhu"],"diarrhea":["Bilva","Bibhitaki","Haritaki"],
+  "digestion":["Ginger","Turmeric","Cumin","Fennel","Fenugreek","Musta"],"diabetes":["Neem","Turmeric","Guduchi","Moringa"],
+  "energy & fatigue":["Ashwagandha","Shilajit","Pippali","Moringa"],"eye health":["Lodhra","Brahmi","Triphala","Amalaki"],
+  "fever":["Tulsi","Guduchi","Kutki","Kalmegh","Musta"],"female health":["Shatavari","Ashoka","Musta","Rose"],
+  "gas & bloating":["Fennel","Cumin","Ginger","Coriander"],"hair loss":["Hibiscus","Brahmi","Amalaki","Bhumyamalaki"],
+  "heart health":["Arjuna","Lotus","Garlic","Guggul"],"immunity":["Amalaki","Guduchi","Tulsi","Moringa","Kalmegh"],
+  "inflammation":["Turmeric","Ginger","Guggul","Manjistha"],"insomnia":["Ashwagandha","Jasmine","Shankhpushpi"],
+  "joint pain":["Guggul","Ginger","Turmeric","Castor oil"],"kidney health":["Bhumyamalaki","Punarnava","Gokshura"],
+  "liver health":["Kutki","Neem","Bhumyamalaki","Manjistha"],"male vitality":["Shilajit","Ashwagandha","Vidari"],
+  "memory":["Brahmi","Gotu Kola","Shankhpushpi","Amalaki"],"menstrual":["Musta","Ashoka","Shatavari"],
+  "nausea":["Ginger","Fennel","Cardamom"],"obesity":["Triphala","Guggul","Moringa","Ginger"],
+  "respiratory":["Vasaka","Tulsi","Pippali","Bibhitaki"],"skin disorders":["Neem","Manjistha","Aloe Vera","Guduchi"],
+  "stamina":["Ashwagandha","Shilajit","Vidari","Pippali"],"stress":["Ashwagandha","Brahmi","Tulsi","Jasmine"],
+  "throat":["Clove","Turmeric","Yashtimadhu","Vasaka"],"urinary":["Punarnava","Bhumyamalaki","Coriander"],
+  "wound healing":["Aloe Vera","Turmeric","Neem","Marigold"]
+};
+
+let plantFilter='all', diseaseFilter='', herbSearchTerm='';
+
+/* ════ DUST PARTICLES ════ */
+const cvs=document.getElementById('dust');
+const ctx=cvs.getContext('2d');
+let W,H,pts=[];
+function rsz(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight;}
+rsz();window.addEventListener('resize',rsz);
+function mkP(){return{x:Math.random()*W,y:H+10,vx:(Math.random()-.5)*.35,vy:-(Math.random()*.55+.15),sz:Math.random()*2.2+.4,a:Math.random()*.32+.04,life:1,decay:Math.random()*.0015+.0007,gold:Math.random()<.65};}
+for(let i=0;i<65;i++){const p=mkP();p.y=Math.random()*H;p.life=Math.random();pts.push(p);}
+function aDust(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach((p,i)=>{
+    p.x+=p.vx+Math.sin(Date.now()*.0009+i)*.18;p.y+=p.vy;p.life-=p.decay;
+    if(p.life<=0||p.y<-10){pts[i]=mkP();return;}
+    const fd=p.life<.25?p.life/.25:1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);
+    ctx.fillStyle=p.gold?`rgba(201,168,76,${p.a*fd})`:`rgba(190,140,70,${p.a*.55*fd})`;ctx.fill();
+  });
+  if(Math.random()<.016){ctx.beginPath();ctx.arc(Math.random()*W,Math.random()*H,.9,0,Math.PI*2);ctx.fillStyle=`rgba(240,192,90,${Math.random()*.45+.12})`;ctx.fill();}
+  requestAnimationFrame(aDust);
+}
+aDust();
+
+/* ════ REVEAL ════ */
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target);}});},{threshold:.08,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('rbar').style.width=((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100)+'%';});
+
+/* ════ DOSHA TOGGLE ════ */
+function toggleDosha(btn){
+  const card=btn.closest('.dosha-card');
+  const isOpen=card.classList.contains('open');
+  card.classList.toggle('open',!isOpen);
+  btn.textContent=isOpen?`Explore ${card.querySelector('.dname').textContent} ↓`:'Close ↑';
+}
+
+/* ════ DIET TABS ════ */
+function switchDiet(tab,btn){
+  document.querySelectorAll('.diet-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.diet-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('diet-'+tab).classList.add('active');btn.classList.add('active');
+}
+
+/* ════ HERB TABS ════ */
+function switchHerbTab(id,btn){
+  document.querySelectorAll('.herb-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.herb-tab[onclick*="switchHerbTab"]').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
+  if(id==='herb-plants') renderPlants();
+  if(id==='herb-remedies') renderDiseaseButtons();
+  if(id==='herb-cultivation') renderCultivation();
+}
+
+/* ════ HERB SEARCH ════ */
+function onHerbSearch(val){
+  herbSearchTerm=val.toLowerCase().trim();
+  // search across all tabs
+  const activePanel=document.querySelector('.herb-panel.active');
+  if(!activePanel) return;
+  const id=activePanel.id;
+  if(id==='herb-overview') filterHerbOverview(herbSearchTerm);
+  if(id==='herb-plants') renderPlants();
+  if(id==='herb-remedies'){
+    document.querySelector('.herb-panel.active input')&&(document.getElementById('diseaseSearchInput')&&(document.getElementById('diseaseSearchInput').value=herbSearchTerm));
+    renderDiseaseResults(herbSearchTerm);
+  }
+  if(id==='herb-cultivation') renderCultivation();
+}
+
+function filterHerbOverview(term){
+  const cards=document.querySelectorAll('#herb-overview .herb-card');
+  cards.forEach(c=>{
+    const name=c.querySelector('.herb-name')?.textContent.toLowerCase()||'';
+    const skt=c.querySelector('.herb-skt')?.textContent.toLowerCase()||'';
+    const desc=c.querySelector('.herb-desc')?.textContent.toLowerCase()||'';
+    c.style.display=(!term||name.includes(term)||skt.includes(term)||desc.includes(term))?'':'none';
+  });
+}
+
+/* ════ PLANTS GRID ════ */
+function renderPlants(){
+  const grid=document.getElementById('plantsGrid');
+  grid.innerHTML='';
+  const t=herbSearchTerm;
+  const f=plantsData.filter(p=>{
+    const cat=plantFilter==='all'||p.category===plantFilter;
+    const s=!t||(p.name.toLowerCase().includes(t)||p.sanskrit.toLowerCase().includes(t)||p.medicinalUses.toLowerCase().includes(t)||p.category.toLowerCase().includes(t));
+    return cat&&s;
+  });
+  if(!f.length){grid.innerHTML='<p class="herb-no-results">✦ No sacred herbs found in the archive ✦</p>';return;}
+  f.forEach((p,i)=>{
+    const c=document.createElement('div');c.className='plant-card-db';
+    c.innerHTML=`<div class="p-img-box"><div class="p-glow"></div><span class="p-emoji">${p.emoji}</span></div>
+      <div class="p-body">
+        <h3 class="p-name">${p.name}</h3>
+        <p class="p-skt">${p.sanskrit}</p>
+        <span class="p-cat">${p.category}</span>
+        <p class="p-excerpt">${p.importance}</p>
+        <span class="p-view" onclick="openPlantModal(${plantsData.indexOf(p)})">Open Ancient Scroll</span>
+      </div>`;
+    grid.appendChild(c);
+  });
+}
+
+function filterPlants(cat,btn){
+  document.querySelectorAll('#plantFilterRow .herb-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');plantFilter=cat;renderPlants();
+}
+
+/* ════ INDEXEDDB IMAGE STORAGE (50MB+) ════ */
+let idb=null;
+const IDB_NAME='VaidyaGranthalayaDB',IDB_STORE='plantImages',IDB_VER=1;
+let currentPlantIdx=null;
+
+function initIDB(){
+  return new Promise(res=>{
+    try{
+      const req=indexedDB.open(IDB_NAME,IDB_VER);
+      req.onerror=()=>{console.warn('IDB unavailable — using localStorage');res(false);};
+      req.onsuccess=e=>{idb=e.target.result;res(true);};
+      req.onupgradeneeded=e=>{
+        const db=e.target.result;
+        if(!db.objectStoreNames.contains(IDB_STORE))
+          db.createObjectStore(IDB_STORE,{keyPath:'name'});
+      };
+    }catch(e){res(false);}
+  });
+}
+
+async function saveImgToDB(name,dataURL){
+  // always write to localStorage as fast fallback
+  try{localStorage.setItem('vg-img-'+name,dataURL);}catch(e){}
+  if(!idb) return;
+  return new Promise(res=>{
+    try{
+      const tx=idb.transaction([IDB_STORE],'readwrite');
+      tx.objectStore(IDB_STORE).put({name,dataURL,ts:Date.now()});
+      tx.oncomplete=()=>res(true);
+      tx.onerror=()=>res(false);
+    }catch(e){res(false);}
+  });
+}
+
+async function getImgFromDB(name){
+  // prefer IDB; fall back to localStorage
+  if(idb){
+    const result=await new Promise(res=>{
+      try{
+        const tx=idb.transaction([IDB_STORE],'readonly');
+        const req=tx.objectStore(IDB_STORE).get(name);
+        req.onsuccess=()=>res(req.result?req.result.dataURL:null);
+        req.onerror=()=>res(null);
+      }catch(e){res(null);}
+    });
+    if(result) return result;
+  }
+  return localStorage.getItem('vg-img-'+name)||null;
+}
+
+async function deleteImgFromDB(name){
+  try{localStorage.removeItem('vg-img-'+name);}catch(e){}
+  if(!idb) return;
+  return new Promise(res=>{
+    try{
+      const tx=idb.transaction([IDB_STORE],'readwrite');
+      tx.objectStore(IDB_STORE).delete(name);
+      tx.oncomplete=()=>res();
+      tx.onerror=()=>res();
+    }catch(e){res();}
+  });
+}
+
+async function getAllStoredImgNames(){
+  if(idb){
+    return new Promise(res=>{
+      try{
+        const tx=idb.transaction([IDB_STORE],'readonly');
+        const req=tx.objectStore(IDB_STORE).getAllKeys();
+        req.onsuccess=()=>res(req.result||[]);
+        req.onerror=()=>res([]);
+      }catch(e){res([]);}
+    });
+  }
+  // fallback: scan localStorage
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.startsWith('vg-img-'))keys.push(k.replace('vg-img-',''));
+  }
+  return keys;
+}
+
+/* ── Storage usage display ── */
+async function updateStorageBar(){
+  const bar=document.getElementById('storageFill');
+  const lbl=document.getElementById('storageCount');
+  if(!bar||!lbl) return;
+  const names=await getAllStoredImgNames();
+  const count=names.length;
+  const pct=Math.min((count/50)*100,100);
+  bar.style.width=pct+'%';
+  lbl.textContent=`${count} / 50 plants have images`;
+}
+
+/* ── Toast notification ── */
+function showToast(msg,duration=2400){
+  const t=document.getElementById('imgToast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),duration);
+}
+
+/* ── Handle file input ── */
+async function handleImgUpload(event){
+  const file=event.target.files[0];
+  if(!file||currentPlantIdx===null) return;
+  const p=plantsData[currentPlantIdx];
+  // compress if too large
+  const reader=new FileReader();
+  reader.onload=async function(e){
+    let dataURL=e.target.result;
+    // compress via canvas if >800KB
+    if(dataURL.length>800000){
+      dataURL=await compressImage(dataURL,0.72);
+    }
+    // show in modal preview
+    const prev=document.getElementById('imgPreviewBox');
+    if(prev) prev.innerHTML=`<img src="${dataURL}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`;
+    // save
+    await saveImgToDB(p.name,dataURL);
+    // refresh cards
+    refreshCardImage(p.name,dataURL);
+    await updateStorageBar();
+    showToast(`✦ ${p.name} image saved to sacred archive`);
+    // reset input
+    document.getElementById('globalImgInput').value='';
+  };
+  reader.readAsDataURL(file);
+}
+
+function compressImage(dataURL,quality){
+  return new Promise(res=>{
+    const img=new Image();
+    img.onload=function(){
+      const cvs=document.createElement('canvas');
+      const MAX=900;
+      let w=img.width,h=img.height;
+      if(w>MAX){h=Math.round(h*(MAX/w));w=MAX;}
+      if(h>MAX){w=Math.round(w*(MAX/h));h=MAX;}
+      cvs.width=w;cvs.height=h;
+      cvs.getContext('2d').drawImage(img,0,0,w,h);
+      res(cvs.toDataURL('image/jpeg',quality));
+    };
+    img.src=dataURL;
+  });
+}
+
+function refreshCardImage(plantName,dataURL){
+  // update herb-overview cards
+  document.querySelectorAll('.herb-card').forEach(card=>{
+    const nm=card.querySelector('.herb-name');
+    if(nm&&nm.textContent.trim()===plantName){
+      let wrap=card.querySelector('.hc-img-wrap');
+      if(!wrap){
+        wrap=document.createElement('div');
+        wrap.className='hc-img-wrap';
+        card.insertBefore(wrap,card.firstChild);
+      }
+      wrap.innerHTML=`<img src="${dataURL}" alt="${plantName}" class="hc-img">`;
+      card.classList.add('has-img');
+    }
+  });
+  // update plants-grid cards
+  document.querySelectorAll('.plant-card-db').forEach(card=>{
+    const nm=card.querySelector('.p-name');
+    if(nm&&nm.textContent.trim()===plantName){
+      const box=card.querySelector('.p-img-box');
+      if(box) box.innerHTML=`<img src="${dataURL}" alt="${plantName}" style="width:100%;height:100%;object-fit:cover;">`;
+    }
+  });
+}
+
+/* ── Open modal with image upload ── */
+async function openPlantModal(idx){
+  currentPlantIdx=idx;
+  const p=plantsData[idx];
+  const existingImg=await getImgFromDB(p.name);
+  const previewHTML=existingImg
+    ?`<img src="${existingImg}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
+    :`<div class="img-placeholder"><span class="ph-emoji">${p.emoji}</span><p class="ph-text">No image yet — upload one below</p></div>`;
+
+  document.getElementById('modalBody').innerHTML=`
+    <!-- IMAGE UPLOAD ZONE -->
+    <div class="img-zone">
+      <p class="img-zone-title">📷 Plant Sacred Image</p>
+      <div class="img-preview" id="imgPreviewBox">${previewHTML}</div>
+      <div class="img-btn-row">
+        <button class="btn-img-upload" onclick="document.getElementById('globalImgInput').click()">📁 Upload Image</button>
+        <button class="btn-img-remove" onclick="removeImg(${idx})">✕ Remove</button>
+        ${existingImg?`<button class="btn-img-save" onclick="downloadImg('${p.name}')">⬇ Download</button>`:''}
+      </div>
+      <div class="img-storage-bar">
+        <div class="img-storage-label">
+          <span>📦 Archive Storage</span>
+          <span id="storageCount">Loading…</span>
+        </div>
+        <div class="img-storage-track">
+          <div class="img-storage-fill" id="storageFill" style="width:0%"></div>
+        </div>
+        <p style="font-style:italic;font-size:.7rem;color:rgba(192,168,112,.4);margin-top:.4rem;">Images stored via IndexedDB (50MB+) · persists across sessions</p>
+      </div>
+    </div>
+
+    <!-- PLANT DETAILS -->
+    <h2 class="modal-title">${p.emoji} ${p.name}</h2>
+    <p class="modal-skt">${p.sanskrit}</p>
+    <p style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);font-style:italic;margin-bottom:.9rem;">${p.scientific}</p>
+    <div class="m-div"></div>
+    <p class="m-st">Description</p><p class="m-sb">${p.description}</p>
+    <p class="m-st">Sacred Importance</p><p class="m-sb">${p.importance}</p>
+    <p class="m-st">Medicinal Uses</p><p class="m-sb">${p.medicinalUses}</p>
+    <p class="m-st">Parts Used</p><p class="m-sb">${p.partsUsed}</p>
+    <p class="m-st">Dosage & Preparation</p><p class="m-sb"><strong>Dosage:</strong> ${p.dosage}<br><strong>Preparation:</strong> ${p.preparation}</p>
+    <p class="m-st">Side Effects & Precautions</p><p class="m-sb">${p.sideEffects}</p>
+    <div class="m-div"></div>
+    <p class="m-st">Cultivation Knowledge</p>
+    <p class="m-sb">
+      <strong>Soil:</strong> ${p.cultivation.soil}<br>
+      <strong>Climate:</strong> ${p.cultivation.climate}<br>
+      <strong>Propagation:</strong> ${p.cultivation.propagation}<br>
+      <strong>Irrigation:</strong> ${p.cultivation.irrigation}<br>
+      <strong>Fertilizer:</strong> ${p.cultivation.fertilizer}<br>
+      <strong>Pest & Disease:</strong> ${p.cultivation.pestDisease}<br>
+      <strong>Harvesting:</strong> ${p.cultivation.harvesting}
+    </p>`;
+
+  document.getElementById('plantModal').classList.add('show');
+  // wire up the file input for this modal open
+  const inp=document.getElementById('globalImgInput');
+  inp.onchange=handleImgUpload;
+  updateStorageBar();
+}
+
+async function removeImg(idx){
+  const p=plantsData[idx];
+  await deleteImgFromDB(p.name);
+  // reset preview
+  const prev=document.getElementById('imgPreviewBox');
+  if(prev) prev.innerHTML=`<div class="img-placeholder"><span class="ph-emoji">${p.emoji}</span><p class="ph-text">Image removed</p></div>`;
+  // reset cards
+  document.querySelectorAll('.herb-card').forEach(card=>{
+    const nm=card.querySelector('.herb-name');
+    if(nm&&nm.textContent.trim()===p.name){
+      const wrap=card.querySelector('.hc-img-wrap');
+      if(wrap){wrap.innerHTML='';card.classList.remove('has-img');}
+    }
+  });
+  document.querySelectorAll('.plant-card-db').forEach(card=>{
+    const nm=card.querySelector('.p-name');
+    if(nm&&nm.textContent.trim()===p.name){
+      const box=card.querySelector('.p-img-box');
+      if(box) box.innerHTML=`<div class="p-glow"></div><span class="p-emoji">${p.emoji}</span>`;
+    }
+  });
+  await updateStorageBar();
+  showToast(`✦ ${p.name} image removed from archive`);
+}
+
+function downloadImg(plantName){
+  getImgFromDB(plantName).then(dataURL=>{
+    if(!dataURL) return;
+    const a=document.createElement('a');
+    a.href=dataURL;a.download=plantName.replace(/\s/g,'-')+'.jpg';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+  });
+}
+
+/* ── Load all stored images into cards on init ── */
+async function loadAllStoredImages(){
+  const names=await getAllStoredImgNames();
+  for(const name of names){
+    const dataURL=await getImgFromDB(name);
+    if(dataURL) refreshCardImage(name,dataURL);
+  }
+}
+
+document.getElementById('plantModal').addEventListener('click',e=>{if(e.target.id==='plantModal')document.getElementById('plantModal').classList.remove('show');});
+
+/* ════ REMEDIES ════ */
+function renderDiseaseButtons(){
+  const c=document.getElementById('diseaseBtns');c.innerHTML='';
+  Object.keys(diseaseDB).sort().forEach(d=>{
+    const b=document.createElement('button');b.className='dis-btn';
+    b.textContent=d.charAt(0).toUpperCase()+d.slice(1);
+    b.onclick=()=>{
+      document.querySelectorAll('.dis-btn').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      renderDiseaseResults(d);
+    };
+    c.appendChild(b);
+  });
+}
+function onDiseaseSearch(val){renderDiseaseResults(val.toLowerCase().trim());}
+function renderDiseaseResults(term){
+  const r=document.getElementById('remedyResults');r.innerHTML='';
+  if(!term){r.innerHTML='<p class="rem-no">✦ Select a condition or search above ✦</p>';return;}
+  const found=Object.keys(diseaseDB).filter(d=>d.includes(term.toLowerCase()));
+  if(!found.length){r.innerHTML='<p class="rem-no">✦ No ancient remedies found — try another condition ✦</p>';return;}
+  found.forEach(disease=>{
+    const card=document.createElement('div');card.className='rem-card';
+    let html='';
+    diseaseDB[disease].forEach(pn=>{
+      const p=plantsData.find(x=>x.name===pn);
+      if(p)html+=`<div class="rem-row"><p class="rem-plant-name">🌿 ${p.name} — ${p.emoji}</p><p class="rem-detail">${p.medicinalUses}</p><p class="rem-detail" style="margin-top:.2rem;color:rgba(192,168,112,.55);font-size:.74rem;"><strong style="font-style:normal;color:rgba(192,168,112,.7);">Dosage:</strong> ${p.dosage} · <strong style="font-style:normal;color:rgba(192,168,112,.7);">Prep:</strong> ${p.preparation}</p></div>`;
+    });
+    card.innerHTML=`<p class="rem-heading">◈ ${disease.charAt(0).toUpperCase()+disease.slice(1)}</p>${html}`;
+    r.appendChild(card);
+  });
+}
+
+/* ════ CULTIVATION ════ */
+function renderCultivation(){
+  const c=document.getElementById('cultivationContainer');c.innerHTML='';
+  const t=herbSearchTerm;
+  const f=t?plantsData.filter(p=>p.name.toLowerCase().includes(t)||p.sanskrit.toLowerCase().includes(t)):plantsData;
+  f.forEach(p=>{
+    const d=document.createElement('div');d.className='cult-card';
+    d.innerHTML=`<p class="cult-name">${p.emoji} ${p.name} — <span style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.9rem;">${p.sanskrit}</span></p>
+      <div class="cult-grid">
+        <div class="cult-item"><p class="cult-label">🌍 Soil</p><p class="cult-val">${p.cultivation.soil}</p></div>
+        <div class="cult-item"><p class="cult-label">🌡️ Climate</p><p class="cult-val">${p.cultivation.climate}</p></div>
+        <div class="cult-item"><p class="cult-label">🌱 Propagation</p><p class="cult-val">${p.cultivation.propagation}</p></div>
+        <div class="cult-item"><p class="cult-label">💧 Irrigation</p><p class="cult-val">${p.cultivation.irrigation}</p></div>
+        <div class="cult-item"><p class="cult-label">🌾 Fertilizer</p><p class="cult-val">${p.cultivation.fertilizer}</p></div>
+        <div class="cult-item"><p class="cult-label">🛡️ Pest & Disease</p><p class="cult-val">${p.cultivation.pestDisease}</p></div>
+        <div class="cult-item"><p class="cult-label">🌾 Harvesting</p><p class="cult-val">${p.cultivation.harvesting}</p></div>
+      </div>`;
+    c.appendChild(d);
+  });
+}
+
+/* ════ LOCAL YOGA GENERATOR ════ */
+const yogaDB={
+  Vata:{
+    stress:{
+      intro:"This grounding, calming practice gently settles the restless Vata winds within you, restoring a sense of safety and stillness.",
+      why:"Vata imbalance manifests as anxiety and restlessness. Slow, deliberate movements anchor Vata's scattered energy, activating the parasympathetic nervous system to dissolve stress at its root.",
+      warmup:["Gentle neck rolls (5 each side) — slowly, with full breath", "Sukshma Vyayama — wrist and ankle rotations, 5 circles each"],
+      asanas:[
+        {name:"Balasana (Child's Pose)",desc:"Kneel, lower forehead to ground, arms extended or by sides. Feel the earth beneath you. Breathe into the back body.",dur:"2 minutes, 5-8 deep breaths"},
+        {name:"Supta Baddha Konasana",desc:"Lie on back. Bring soles of feet together, knees fall wide. Place hands on belly. Surrender the weight of the day.",dur:"3 minutes, eyes closed"},
+        {name:"Viparita Karani (Legs Up Wall)",desc:"Lie near a wall, extend legs upward. Arms open at sides, palms up. A deeply calming inversion for Vata.",dur:"3-5 minutes"},
+        {name:"Shavasana",desc:"Full relaxation pose. Allow every muscle to soften. The earth holds you completely. Nothing to do, nowhere to go.",dur:"Final 2-3 minutes"}
+      ],
+      pranayama:{name:"Nadi Shodhana (Alternate Nostril Breathing)",desc:"Close right nostril with thumb, inhale left. Close both. Open right, exhale. Inhale right. Switch. 10 rounds. This balances the nervous system and deeply pacifies Vata."},
+      relax:"Lie in Shavasana. Place a warm blanket over the body. Visualize golden light filling your being from toes to crown. Each breath deepens the stillness. Rest here for 3-5 minutes.",
+      thought:"The ocean does not rush. Yet it touches every shore. — Ayurvedic Proverb",
+      bestTime:"Early evening (5-7 PM) when Vata peaks and most needs grounding."
+    },
+    sleep:{
+      intro:"This sacred pre-sleep ritual prepares the body and mind for deep, restorative slumber, calming all Vata turbulence before sleep.",
+      why:"Vata governs the nervous system and breath. When unbalanced before sleep, it creates restlessness and racing thoughts. These poses activate the rest-and-digest response.",
+      warmup:["Slow, conscious full body stretch on the bed", "3 deep yawns intentionally — jaw and face relaxation"],
+      asanas:[
+        {name:"Supta Paschimottanasana",desc:"Lying on back, draw knees to chest. Hug them gently. Rock side to side slowly — a lullaby for the spine.",dur:"2 minutes"},
+        {name:"Supta Matsyendrasana (Supine Twist)",desc:"Both knees drop to one side, arms open wide. Gaze opposite direction. Complete surrender. Switch sides.",dur:"90 seconds each side"},
+        {name:"Viparita Karani",desc:"Legs up the wall — a profound nervous system reset. Feel blood gently drain from the legs. Mind quietens.",dur:"5 minutes"},
+        {name:"Shavasana / Yoga Nidra position",desc:"Final resting pose. Scan body from feet to crown, releasing any remaining tension at each station.",dur:"5-10 minutes of Yoga Nidra"}
+      ],
+      pranayama:{name:"Bhramari Pranayama (Humming Bee Breath)",desc:"Inhale fully. Close ears with thumbs, eyes with fingers, exhale slowly making a humming sound. 7-9 rounds. The vibration profoundly calms the nervous system."},
+      relax:"You are safe. You are complete. Allow tomorrow to belong to tomorrow. Breathe in peace. Breathe out all that does not serve. Let sleep come as a dear friend who has been waiting.",
+      thought:"In deep rest, wisdom gathers like morning dew — quietly, without effort.",
+      bestTime:"30-60 minutes before sleep (9:00-9:30 PM ideally)."
+    },
+    energy:{
+      intro:"A gentle, warming practice to awaken Vata's natural creativity and vitality without over-stimulating this sensitive dosha.",
+      why:"Vata energy is quick and light — it can be elevated without vigorous effort. These slow yet progressive movements build internal heat and vital force sustainably.",
+      warmup:["Surya Mudra — fold ring finger to thumb for 2 minutes", "Slow shoulder shrugs and arm swings to warm the upper body"],
+      asanas:[
+        {name:"Tadasana (Mountain Pose)",desc:"Stand firm, feet rooted, spine tall, crown reaching sky. Feel your strength. Breathe deeply into your power.",dur:"1 minute, 5 full breaths"},
+        {name:"Virabhadrasana I (Warrior I)",desc:"Step wide, bend front knee over ankle. Arms reach overhead. You are the warrior within. Hold with strength.",dur:"5-8 breaths each side"},
+        {name:"Vrksasana (Tree Pose)",desc:"Stand on one leg, other foot on inner thigh. Hands at heart or extended above. Balance builds focus and energy.",dur:"30-45 seconds each side"},
+        {name:"Trikonasana (Triangle Pose)",desc:"Wide stance, reach forward then down one side. Open chest to sky. Creates spaciousness and vitality throughout the body.",dur:"5 breaths each side"}
+      ],
+      pranayama:{name:"Ujjayi Pranayama (Victorious Breath)",desc:"Slightly constrict the back of the throat. Breathe audibly like ocean waves. Slow, deep, warming. 10 rounds. Builds internal fire while remaining calm."},
+      relax:"Rest in a comfortable seat. Feel the new vitality coursing through your nadis like gentle streams of golden light. This energy is yours for the entire day.",
+      thought:"नादं बिन्दुं कलां चैव — Sound, light, and energy are the three pillars of awakened Vata.",
+      bestTime:"Morning (7-9 AM) when the body naturally awakens but needs gentle encouragement."
+    },
+    digestion:{
+      intro:"These grounding, warming poses kindle the sacred digestive fire (Agni) — often weak in Vata types — and ease the gas, bloating, and irregularity Vata brings.",
+      why:"Vata's dry, cold, mobile nature weakens Agni and creates irregular digestion. These poses warm the abdomen, stimulate intestinal movement, and ground the nervous system.",
+      warmup:["Stomach massage — gentle clockwise circles with warm palms", "Cat-Cow (Marjaryasana-Bitilasana) — 10 slow rounds"],
+      asanas:[
+        {name:"Pavanamuktasana (Wind-Relieving Pose)",desc:"Lie on back. Hug both knees to chest. Rock gently side to side. Then draw one knee at a time. This is Ayurveda's greatest gas-relief posture.",dur:"2-3 minutes"},
+        {name:"Supta Matsyendrasana (Supine Twist)",desc:"Gentle spinal twist compresses and releases digestive organs, stimulating peristalsis and eliminating gas.",dur:"90 seconds each side"},
+        {name:"Setu Bandhasana (Bridge Pose)",desc:"Feet hip-width on floor, press hips to sky. Stimulates the thyroid, fires the digestive system, grounds the lower back.",dur:"5 breaths, 3 times"},
+        {name:"Balasana with belly compression",desc:"Child's pose with a small pillow under belly — warm pressure on the abdomen stimulates digestion gently.",dur:"2 minutes"}
+      ],
+      pranayama:{name:"Kapalbhati Light (Gentle Skull-Shining)",desc:"Seated. Short, sharp exhalations (not too forceful for Vata). Start with 30 rounds slowly. Gently fans digestive fire without over-stimulating Vata's sensitivity."},
+      relax:"Lie on left side — the natural position that aids digestion. Place warm hands on belly. Breathe slowly. Feel the digestive fire gently glowing like a small sacred lamp within.",
+      thought:"Agni is the physician within. Feed it gently, and it heals you completely. — Charaka Samhita",
+      bestTime:"30 minutes after morning meal or before lunch (10-11 AM)."
+    },
+    focus:{
+      intro:"A grounding, mindful practice that draws scattered Vata energy inward, sharpening the mind and creating the mental stillness needed for deep focus.",
+      why:"Vata's mobile, quick nature creates scattered attention. These grounding poses tether the mind to the body, activating the prefrontal cortex for sustained concentration.",
+      warmup:["Trataka — soft candle gazing for 1-2 minutes to anchor the visual field", "Gentle ear massage and scalp press to increase blood flow to the brain"],
+      asanas:[
+        {name:"Garudasana (Eagle Pose)",desc:"Wrap one arm under the other, wrap one leg around the other. Balance demands and rewards complete mental presence.",dur:"30-45 seconds each side"},
+        {name:"Vrikshasana (Tree Pose)",desc:"Standing balance that requires and builds single-pointed concentration. Fix your gaze on one still point (Drishti).",dur:"45 seconds each side"},
+        {name:"Sukhasana with Mudra",desc:"Comfortable cross-legged seat. Gyan Mudra (tip of index to thumb). Spine erect. Close eyes. Simply be here.",dur:"3-5 minutes"},
+        {name:"Sarvangasana (Supported Shoulder Stand)",desc:"Legs up, supported by hands. Increases blood to brain. Known as the queen of poses for mental clarity.",dur:"2 minutes (beginners use wall)"}
+      ],
+      pranayama:{name:"Nadi Shodhana (Alternate Nostril Breathing)",desc:"10 slow rounds. Count of 4-4-4-4 (inhale-hold-exhale-hold). This directly balances the left-right brain hemispheres, producing remarkable focus and clarity."},
+      relax:"Sit tall. Eyes closed or soft. Your mind is now like the surface of a still lake — clear, reflecting, undisturbed. Remain here for 3-5 minutes before returning to your work.",
+      thought:"A distracted mind cannot pierce the truth. Still the Vata. Find the eternal within the ordinary moment.",
+      bestTime:"Morning (6-8 AM) or before important work/study sessions."
+    }
+  },
+  Pitta:{
+    stress:{
+      intro:"A cooling, surrendering practice that releases the fiery grip of Pitta stress — allowing the river to flow where it will, without the mind trying to control everything.",
+      why:"Pitta stress is control-seeking and intense. Cooling, forward-bending, and releasing poses lower cortisol, reduce internal heat, and invite the relaxation Pitta struggles to allow.",
+      warmup:["Moon salutation arms — inhale raise arms, exhale bow forward. 5 slow rounds.", "Gentle forward fold (Uttanasana) — bend as far as comfortable, let gravity release the tension"],
+      asanas:[
+        {name:"Chandra Namaskar (Moon Salutation)",desc:"A series of cooling, lunar-energy poses performed slowly. The opposite of Surya Namaskar's solar fire — perfect Pitta medicine.",dur:"3-5 rounds slowly"},
+        {name:"Paschimottanasana (Seated Forward Bend)",desc:"Legs extended, fold forward over the legs. Release the back body. Surrender the need to control. Breathe into resistance.",dur:"2-3 minutes"},
+        {name:"Supta Baddha Konasana",desc:"Lie back, soles together, knees wide. Place a cool cloth on the forehead. Complete surrender to the earth's support.",dur:"3-5 minutes"},
+        {name:"Viparita Karani (Legs Up Wall)",desc:"The great Pitta soother — reverses blood flow, cools the nervous system, and gives the relentless Pitta mind permission to rest.",dur:"5 minutes"}
+      ],
+      pranayama:{name:"Sheetali Pranayama (Cooling Breath)",desc:"Roll tongue into tube (or purse lips). Inhale through the tongue — feel the cool air. Exhale through the nose slowly. 15 rounds. Directly cools Pitta fire."},
+      relax:"You have done enough today. Truly enough. Release the list. Release the expectation. The stars do not strive to shine — they simply are. Rest in being, not doing.",
+      thought:"The fire that burns too hot consumes even the lamp. Cool the flame to illuminate further. — Vagbhata",
+      bestTime:"Evening (6-8 PM) — cooling down after the intensity of the Pitta-dominated afternoon."
+    },
+    energy:{
+      intro:"A balanced, purposeful practice that channels Pitta's natural fire into productive energy — directed, not burned out.",
+      why:"Pitta already has abundant fire. The goal is intelligent direction, not generation. These poses guide that energy upward and outward productively without overheating.",
+      warmup:["Cooling breath first — 5 rounds Sheetali", "Shoulder opening sequence — wide arm circles, chest opener"],
+      asanas:[
+        {name:"Virabhadrasana II (Warrior II)",desc:"Wide warrior stance. Arms extended parallel to floor. Gaze over front hand. Channel your warrior — focused, powerful, purposeful.",dur:"5-8 breaths each side"},
+        {name:"Utthita Trikonasana (Extended Triangle)",desc:"Wide stance, reach side to side. Creates enormous spaciousness in the body while directing Pitta's energy gracefully.",dur:"5-8 breaths each side"},
+        {name:"Adho Mukha Svanasana (Downward Dog)",desc:"Invert, lengthen the spine, ground the heels. This cooling inversion re-energizes while reducing Pitta heat.",dur:"10 breaths, 2-3 times"},
+        {name:"Ustrasana (Camel Pose)",desc:"On knees, reach back to heels, open heart to sky. A powerful energizing heart-opener — releases suppressed Pitta emotion.",dur:"5 breaths, 2 rounds"}
+      ],
+      pranayama:{name:"Sitali/Sheetkari Pranayama",desc:"Pitta-cooling breath for energy. Inhale through curled tongue or clenched teeth, exhale through nose. Uniquely energizing while remaining cooling — Pitta's ideal combination."},
+      relax:"Lie in Shavasana. Feel the cool, purposeful energy you've cultivated flowing through every channel. This is directed fire — illuminating, not burning.",
+      thought:"The archer who breathes before releasing the arrow never misses. Channel your Pitta with precision.",
+      bestTime:"Early morning (before 8 AM) to set an intentional, directed tone for the day."
+    },
+    digestion:{
+      intro:"A cooling, twisting practice to support Pitta's already-strong digestion while preventing the acidity, inflammation, and excess heat Pitta creates.",
+      why:"Pitta governs digestion (Pachaka Pitta). When excess, it creates hyperacidity and inflammation. Cooling twists regulate digestive heat to the perfect sacred flame.",
+      warmup:["Lying supine twists — 3 each side gently", "Deep diaphragmatic breathing — cooling the digestive center"],
+      asanas:[
+        {name:"Ardha Matsyendrasana (Half Spinal Twist)",desc:"Seated spinal twist. Compress then release digestive organs. Wrings out acidity and stagnation like a wet cloth.",dur:"45-60 seconds each side"},
+        {name:"Pavanamuktasana (Wind-Relieving Pose)",desc:"Hugging knees — gentle abdominal compression relieves gas and bloating while cooling inflamed intestinal lining.",dur:"2 minutes"},
+        {name:"Vajrasana (Thunderbolt Pose)",desc:"Sit on heels immediately after eating. One of Ayurveda's most famous digestion-enhancing positions — activates digestive fire perfectly.",dur:"5-10 minutes after meals"},
+        {name:"Jathara Parivartanasana (Belly Twist)",desc:"Lie down, knees to chest, let them fall to one side. This bilateral twist cools and resets the entire digestive system.",dur:"90 seconds each side"}
+      ],
+      pranayama:{name:"Sheetali Pranayama",desc:"Cool the digestive fire before it becomes excessive. 10 rounds before meals reduces Pitta's tendency toward hyperacidity — a sacred preventive practice from the Hatha Pradipika."},
+      relax:"Rest in left lateral position — optimal for digestion. Feel cooling nectar (Amrita) flowing down through the digestive channel, soothing every inflamed surface.",
+      thought:"The physician who cannot first digest his own knowledge cannot heal another. — Charaka",
+      bestTime:"30 minutes before meals or after the main midday meal (1:30-2:30 PM)."
+    },
+    sleep:{
+      intro:"A deeply surrendering practice that allows Pitta's relentless mind to release control and welcome the sacred healing darkness of sleep.",
+      why:"Pitta insomnia comes from a mind that cannot stop analyzing, planning, or judging. These cooling, introspective poses signal that the day's battle is honorably complete.",
+      warmup:["Cool water on face and feet before practice", "Seated forward fold — 5 minutes of complete surrender"],
+      asanas:[
+        {name:"Paschimottanasana (Seated Forward Fold)",desc:"Complete forward surrender. The competitive Pitta mind must release here — you cannot 'win' in this pose, only soften.",dur:"3 minutes"},
+        {name:"Supta Matsyendrasana (Supine Twist)",desc:"Lying twist releases accumulated tension from the day's work. The body wrings itself free of the day's Pitta intensity.",dur:"2 minutes each side"},
+        {name:"Matsyasana (Fish Pose, gentle)",desc:"Chest opens, throat released. Pitta's armor — held at the sternum — softens completely in this opening pose.",dur:"1-2 minutes"},
+        {name:"Yoga Nidra Position",desc:"Complete supine rest. A cool folded cloth over the eyes (infused with rose water). The practitioner of Yoga Nidra achieves 4-8 hours of rest in 20 minutes.",dur:"10-20 minutes"}
+      ],
+      pranayama:{name:"Chandrabhedana (Moon-Piercing Breath)",desc:"Inhale only through the LEFT nostril (lunar, cooling). Exhale through the RIGHT (solar). 15 rounds. Activates the cooling Ida Nadi — nature's own sleep medicine for overheated Pitta."},
+      relax:"The moon cools what the sun has heated. The night restores what the day has consumed. You are not your tasks. You are not your accomplishments. You are the silent witness resting in moonlight.",
+      thought:"The greatest Pitta practice of all is knowing when to stop. Victory lies in rest.",
+      bestTime:"9:00-9:30 PM — allowing full Pitta release before the body's ideal sleep window."
+    },
+    focus:{
+      intro:"A precision practice that harnesses Pitta's natural intellectual brilliance, directing it toward clear, penetrating focus without the burnout of overexertion.",
+      why:"Pitta naturally focuses intensely — the challenge is sustainability and compassion. These poses cool the mental fire to a steady, illuminating flame rather than a burning one.",
+      warmup:["Trataka (candle gazing) — 2 minutes, then close eyes and hold the afterimage", "Breath awareness only — 2 minutes, following each inhale and exhale precisely"],
+      asanas:[
+        {name:"Siddhasana (Accomplished Pose)",desc:"The traditional meditation seat of accomplished masters. Perfect spinal alignment channels Pitta's sharpness into wisdom rather than mere intelligence.",dur:"5 minutes in stillness"},
+        {name:"Bakasana (Crow Pose — modified)",desc:"Arms bent, lean forward onto bent knees. Demands — and develops — absolute mental presence. A perfect Pitta focus builder.",dur:"3-5 breath attempts"},
+        {name:"Salamba Sarvangasana (Shoulder Stand)",desc:"The queen of asanas — increases cerebral blood flow, calms adrenal response, and creates the physiological conditions for peak mental performance.",dur:"2-3 minutes"},
+        {name:"Halasana (Plow Pose)",desc:"From shoulder stand, lower feet to floor behind head. Deeply cooling inversion that consolidates the focused mental state.",dur:"90 seconds"}
+      ],
+      pranayama:{name:"Bhramari Pranayama (Bee Breath)",desc:"Plugged ears, humming exhale. 12 rounds. The sound resonates through the skull, stimulating the vagus nerve and creating the neurological state of focused, sustained attention."},
+      relax:"Your mind is now a burning glass — precisely focused, not scattered, not burning out. Sit in Siddhasana for 2-3 more minutes. Simply observe the quality of this consciousness you've created.",
+      thought:"The candle focused through glass illuminates what the scattered flame cannot reveal.",
+      bestTime:"Early morning (5:30-7:00 AM) — Pitta's peak mental clarity window."
+    }
+  },
+  Kapha:{
+    stress:{
+      intro:"An invigorating, stimulating practice that lifts Kapha's heavy fog of stress, replacing it with the lightness and radiance that is Kapha's true nature.",
+      why:"Kapha stress is heavy, withdrawn, and depressive. Unlike Vata or Pitta stress, Kapha needs movement, warmth, and stimulation to dissolve — not rest, which deepens the inertia.",
+      warmup:["Jumping jacks or vigorous arm swings — 1 minute to generate heat immediately", "Rapid breath — 30 seconds of quick breathing to awaken the system"],
+      asanas:[
+        {name:"Surya Namaskar (Sun Salutation)",desc:"12-count sequence performed at medium to brisk pace. The sun's energy directly counters Kapha's heavy lunar nature. This is Kapha's greatest medicine.",dur:"5-8 rounds with full engagement"},
+        {name:"Virabhadrasana I & II (Warriors I & II)",desc:"Stand in your power. The warrior poses ignite Kapha's dormant courage, vitality, and will to move through what feels heavy.",dur:"5-8 breaths each side, each pose"},
+        {name:"Navasana (Boat Pose)",desc:"Balance on sitting bones, legs and arms extended. This abdominal strengthener burns Kapha's accumulated heaviness with its demand for active engagement.",dur:"3 rounds of 30-45 seconds"},
+        {name:"Ustrasana (Camel Pose)",desc:"Open the chest — Kapha's favorite holding place for grief and heaviness. This opening releases and lifts the energy dramatically.",dur:"3 rounds, 5 breaths each"}
+      ],
+      pranayama:{name:"Bhastrika Pranayama (Bellows Breath)",desc:"Vigorous equal inhale-exhale pumping through the nose. 30 rounds, rest, repeat 3 times. Burns Kapha's heaviness like bellows on dying embers — the most powerful Kapha stress reliever."},
+      relax:"You moved through the heaviness. Lie in Shavasana — but only briefly (3 minutes maximum). Feel the lightness you've uncovered beneath the Kapha fog. This radiance is your true nature.",
+      thought:"The lotus does not wait for the mud to clear before blooming. Neither should you.",
+      bestTime:"Morning (6-8 AM) — when Kapha is at its peak and most needs to be moved."
+    },
+    energy:{
+      intro:"An energizing fire practice designed to awaken Kapha's enormous dormant potential — like striking flint to reveal the brilliant fire always latent within stone.",
+      why:"Kapha's earth and water elements create magnificent stability and strength, but can dampen the fire of motivation. These vigorous sequences ignite Agni and awaken the inner fire.",
+      warmup:["Kapalabhati — 50 rapid pumps to immediately fire the system", "Vigorous full body shaking (Osho Dynamic warm-up) — 30 seconds to awaken every cell"],
+      asanas:[
+        {name:"Surya Namaskar (FAST)",desc:"Perform sun salutations at a challenging, brisk pace. Build heat aggressively. The whole body becomes a furnace burning Kapha's sluggishness.",dur:"10-12 rounds at pace"},
+        {name:"Trikonasana + Parivritta Trikonasana",desc:"Extended triangle followed by revolved triangle. The combination creates powerful heat throughout the legs, core, and upper body.",dur:"5 breaths each, 2 rounds each side"},
+        {name:"Chaturanga Dandasana (Plank Hold)",desc:"Hold in plank position — core fires, arms burn, Kapha's resistance dissolves. Nothing more effectively awakens dormant Kapha energy.",dur:"30-60 seconds hold, 3 times"},
+        {name:"Sirsasana (Headstand or supported variation)",desc:"The king of poses increases blood flow to brain, fires the adrenals, and dramatically energizes the entire system.",dur:"30 seconds to 2 minutes"}
+      ],
+      pranayama:{name:"Kapalabhati (Skull-Shining Breath)",desc:"120 rapid pumps per minute in 3 rounds. Rest between rounds. This is Ayurveda's most powerful Kapha-burning pranayama — clears Kapha from all channels and ignites the entire being."},
+      relax:"Lie in Shavasana for only 2-3 minutes. Feel the magnificent energy you've awakened. This is who you are beneath the Kapha — vital, radiant, unstoppable. Carry this into your day.",
+      thought:"There is a sleeping lion within every Kapha. These practices are the sunrise that wakes it.",
+      bestTime:"Early morning (before 7 AM) — when Kapha inertia is strongest and most needs to be broken."
+    },
+    digestion:{
+      intro:"A fire-building, stimulating practice that powerfully ignites Kapha's sluggish digestive fire, transforming heaviness and accumulation into radiant digestive health.",
+      why:"Kapha's cold, heavy nature suppresses Agni, creating slow digestion, weight gain, and mucus accumulation. These active poses are digestive fire in physical form.",
+      warmup:["Twists immediately — 5 seated spinal twists each side", "Rapid Cat-Cow — 20 rounds building speed gradually"],
+      asanas:[
+        {name:"Parivrtta Trikonasana (Revolved Triangle)",desc:"The most powerful digestive twist in all of yoga. Deeply compresses then releases the abdominal organs — a complete digestive reset.",dur:"1 minute each side"},
+        {name:"Dhanurasana (Bow Pose)",desc:"Lie prone, grasp ankles, pull and rock on the belly. This rocking motion directly massages the digestive organs with vigorous, fire-building compression.",dur:"3 rounds of 30-45 seconds"},
+        {name:"Navasana (Boat Pose)",desc:"Core fire equals digestive fire in Ayurveda. Boat pose is simultaneous abdominal and Agni strengthening — Kapha's essential digestive medicine.",dur:"5 rounds of 30 seconds"},
+        {name:"Ardha Matsyendrasana",desc:"Deep seated twist that wrings out the liver, gallbladder, spleen, and intestines — eliminating Kapha's accumulated Ama (digestive toxins).",dur:"1-2 minutes each side"}
+      ],
+      pranayama:{name:"Agnisara Dhauti (Fire-Essence Cleansing)",desc:"Stand bent forward, hands on knees. Exhale fully, hold breath out. Rapidly pump abdomen in-out (20-30 times). Release. 5 rounds. Ayurveda's most direct digestive-fire activation practice."},
+      relax:"Rest briefly (2-3 minutes maximum) on right side — the position that keeps Kapha's digestive fire appropriately stimulated. Feel the warmth in your belly — that is health returning.",
+      thought:"Agni properly kindled digests not only food but past karma, stale emotions, and old limitations.",
+      bestTime:"Morning (7-8 AM) — 30 minutes before breakfast to maximize digestive fire ignition."
+    },
+    sleep:{
+      intro:"Even Kapha's heaviness can create disturbed, unrefreshing sleep. This practice ensures deep, sattvic sleep that restores without creating additional heaviness.",
+      why:"Kapha sleep can be excessively heavy (tamasic) and unrefreshing. Light, warming, and then calming practices ensure Kapha sleeps deeply but rises refreshed.",
+      warmup:["Brief vigorous walk (5 min) — do NOT rest all evening with Kapha", "10 minutes of light housework or gentle movement before the yoga practice"],
+      asanas:[
+        {name:"Virabhadrasana (Warriors — brief and warming)",desc:"A few rounds of warrior poses in the early evening ensure Kapha does not sink into excessive heaviness before sleep — light movement prevents stagnation.",dur:"5 breaths each side, 2 rounds"},
+        {name:"Setu Bandhasana (Bridge Pose)",desc:"Bridges opens the chest and gently fires the thyroid — the gland most responsible for Kapha's metabolic rate. Creates warmth without overstimulation.",dur:"5 breaths, 3 rounds"},
+        {name:"Balasana (Child's Pose)",desc:"After the warming poses, transition to grounding rest. Unlike Vata, Kapha benefits from only brief restorative poses to avoid adding more heaviness.",dur:"90 seconds"},
+        {name:"Shavasana with intention",desc:"Lie in Shavasana. Mentally review the day — note 3 things accomplished, 3 things you're grateful for. This prevents the Kapha tendency toward excessive rumination overnight.",dur:"5 minutes conscious relaxation"}
+      ],
+      pranayama:{name:"Ujjayi Pranayama (Victorious Breath)",desc:"Slow, deep Ujjayi with slight throat constriction. 15 rounds. Unlike Bhastrika which stimulates, this warming breath settles Kapha toward sattvic (pure) sleep rather than tamasic (dull) sleep."},
+      relax:"Sleep is sacred — but for Kapha it is medicine only when it is sattvic. Lie on your RIGHT side to prevent Kapha accumulation in the left lung. Set an intention to wake before sunrise. Sleep is the gift you give your practice tomorrow.",
+      thought:"Kapha's gift is loyalty and depth — even in sleep. Sleep with intention; wake with purpose.",
+      bestTime:"9:30-10:00 PM — Kapha should NOT sleep before 9:30 PM as this increases tamasic heaviness."
+    },
+    focus:{
+      intro:"An awakening, stimulating practice that clears Kapha's mental fog, revealing the extraordinary clarity and depth of focus that is Kapha's natural gift when awakened.",
+      why:"Kapha's mind is deep and retentive — the best long-term memory of all doshas — but fog and inertia block access. These practices clear the mist to reveal the brilliant Kapha intellect beneath.",
+      warmup:["Kapalbhati — 50 rapid rounds to immediately clear mental fog", "Vigorous face massage and eye stimulation — wake up the brain's sensory inputs"],
+      asanas:[
+        {name:"Sirsasana (Headstand — supported)",desc:"The king of asanas. More blood to the brain than any other posture. For Kapha's foggy mind, this is an immediate clarity intervention.",dur:"1-3 minutes as capacity allows"},
+        {name:"Garudasana (Eagle Pose)",desc:"Intertwined limbs demand absolute mental engagement. Kapha's tendency toward comfortable inertia is directly challenged — and defeated — in this pose.",dur:"45-60 seconds each side"},
+        {name:"Bakasana (Crow Pose — full if capable)",desc:"Balancing on hands requires and rewards complete neurological engagement. No Kapha fog can coexist with this level of demanded presence.",dur:"3-5 attempts of maximum duration"},
+        {name:"Parivritta Parsvakonasana",desc:"Revolved side angle — deeply demanding pose that combines balance, twist, and strength. Complete engagement of every system simultaneously.",dur:"5-8 breaths each side"}
+      ],
+      pranayama:{name:"Bhastrika + Bhramari Combination",desc:"10 rounds Bhastrika to clear the mental fog, then 10 rounds Bhramari to create focused resonance. This two-phase practice first clears, then focuses — perfect for Kapha's particular cognitive needs."},
+      relax:"Sit for 5 minutes in a dignified seat. The fog has cleared. Beneath it was always this: deep, patient, penetrating Kapha intelligence — capable of understanding what quick minds skip over. Use it well today.",
+      thought:"The deepest wells contain the purest water. Kapha's stillness, when cleared, becomes genius.",
+      bestTime:"Early morning (5:30-7:00 AM) — when Kapha fog is thickest and the benefit of clearing it is greatest."
+    }
+  }
+};
+
+function generateRoutine(){
+  const dosha=document.getElementById('sel-dosha').value;
+  const timeMin=document.getElementById('sel-time').value;
+  const goal=document.getElementById('sel-goal').value;
+  const output=document.getElementById('gen-output');
+  const result=document.getElementById('gen-result');
+  const routine=yogaDB[dosha]&&yogaDB[dosha][goal];
+  if(!routine){result.innerHTML='<p class="rem-no">Routine not found.</p>';output.classList.add('show');return;}
+  const timeLabel=timeMin==='5'?'5-Minute':timeMin==='10'?'10-Minute':'15-Minute';
+  const asanaCount=timeMin==='5'?2:timeMin==='10'?3:4;
+  const asanas=routine.asanas.slice(0,asanaCount);
+  let html=`
+    <div class="go-section">
+      <span class="go-label">Introduction</span>
+      <div class="go-text"><p>${routine.intro}</p></div>
+    </div>
+    <div class="go-divider"></div>
+    <div class="go-section">
+      <span class="go-label">Why This Routine — ${dosha} · ${goal.replace(/([A-Z])/g,' $1').trim()}</span>
+      <div class="go-text"><p>${routine.why}</p></div>
+    </div>
+    <div class="go-divider"></div>
+    <div class="go-section">
+      <span class="go-label">Warm-Up (2-3 Minutes)</span>
+      <div class="go-text"><ul>${routine.warmup.map(w=>`<li>${w}</li>`).join('')}</ul></div>
+    </div>
+    <div class="go-divider"></div>
+    <div class="go-section">
+      <span class="go-label">Main Asanas — ${timeLabel} ${dosha} Practice</span>
+      <div class="go-text"><ul>${asanas.map(a=>`<li><strong style="font-style:normal;color:var(--parch-d);">${a.name}</strong><br>${a.desc}<br><span style="color:rgba(192,168,112,.55);font-size:.78rem;">⏱ ${a.dur}</span></li>`).join('')}</ul></div>
+    </div>
+    <div class="go-divider"></div>
+    <div class="go-section">
+      <span class="go-label">Pranayama — ${routine.pranayama.name}</span>
+      <div class="go-text"><p>${routine.pranayama.desc}</p></div>
+    </div>
+    <div class="go-divider"></div>
+    <div class="go-section">
+      <span class="go-label">Relaxation & Closing</span>
+      <div class="go-text"><p>${routine.relax}</p></div>
+    </div>
+    <div class="go-thought">
+      <p>"${routine.thought}"</p>
+      <span class="go-badge">⏰ Best Time: ${routine.bestTime}</span>
+    </div>`;
+  result.innerHTML=html;
+  output.classList.add('show');
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════ INIT ON LOAD ════ */
+window.addEventListener("DOMContentLoaded",async()=>{
+  await initIDB();
+  renderHerbOverview();
+  await loadAllStoredImages();
+});
+
+/* ════ SMOOTH SCROLL ════ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');if(!href||href==='#')return;
+    e.preventDefault();const t=document.querySelector(href);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
